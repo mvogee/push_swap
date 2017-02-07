@@ -41,17 +41,46 @@ int		get_numcommands(char *commands)
 			count++;
 			flag = 1;
 		}
-		if (flag = 1 && *commands == '\n')
+		if (flag == 1 && *commands == '\n')
 			flag = 0;
 		commands++;
 	}
 	return (count);
 }
 
+int		find_command(char *comm)
+{
+	if (ft_strcmp(ft_toupperstr(comm), "SA") == 0)
+		return (SA);
+	else if (ft_strcmp(ft_toupperstr(comm), "SB") == 0)
+		return (SB);
+	else if (ft_strcmp(ft_toupperstr(comm), "SS") == 0)
+		return (SS);
+	else if (ft_strcmp(ft_toupperstr(comm), "PA") == 0)
+		return (PA);
+	else if (ft_strcmp(ft_toupperstr(comm), "PB") == 0)
+		return (PB);
+	else if (ft_strcmp(ft_toupperstr(comm), "RA") == 0)
+		return (RA);
+	else if (ft_strcmp(ft_toupperstr(comm), "RB") == 0)
+		return (RB);
+	else if (ft_strcmp(ft_toupperstr(comm), "RR") == 0)
+		return (RR);
+	else if (ft_strcmp(ft_toupperstr(comm), "RRA") == 0)
+		return (RRA);
+	else if (ft_strcmp(ft_toupperstr(comm), "RRB") == 0)
+		return (RRB);
+	else if (ft_strcmp(ft_toupperstr(comm), "RRR") == 0)
+		return (RRR);
+	else
+		return (0);
+}
+
 int		translate_command(char *commands)
 {
 	char	*comm;
 	int		len;
+	int		ret;
 
 	len = 0;
 	while (ft_isalpha(*commands))
@@ -59,8 +88,12 @@ int		translate_command(char *commands)
 		len++;
 		commands++;
 	}
-	comm = ft_strsub(commands, len);
-	
+	comm = ft_strsub(commands, 0, len);
+	if (!comm)
+		return (0);
+	ret = find_command(comm);
+	ft_memdel((void**)comm);
+	return (ret);
 }
 
 int		*parse_commands(char *commands)
@@ -71,7 +104,7 @@ int		*parse_commands(char *commands)
 
 	count = 0;
 	size = get_numcommands(commands);
-	cmdarray = (int*)malloc(sizeof(int) * size + 1);
+	cmdarray = (int*)ft_memalloc(sizeof(int) * size + 1);
 	while (count < size)
 	{
 		while (commands && !ft_isalpha(*commands) && *commands)
@@ -81,6 +114,8 @@ int		*parse_commands(char *commands)
 			commands++;
 		count++;
 	}
+	cmdarray[count] = -1;
+	ft_memdel((void**)commands);
 	return (cmdarray);
 }
 
@@ -91,21 +126,24 @@ int		*get_commands(void)
 	char	*hold;
 	int		r;
 
-	r = read(1, buff, 500);
+	buff = NULL;
+	r = read(0, buff, 500);
+	ft_printf("%s\n", buff);
 	commands = ft_strdup(buff);
 	if (!commands || r <= 0)
 		exit(0);
+	ft_printf("get_commands");
 	while (r > 0)
 	{
-		r = read(1, buff, 500)
+		r = read(0, buff, 500);
 		if (r <= 0)
 			break ;
 		hold = ft_strdup(commands);
-		ft_memdel(commands);
+		ft_memdel((void**)commands);
 		commands = ft_strjoin(hold, buff);
-		ft_memdel(hold);
+		ft_memdel((void**)hold);
+		ft_printf("get_commands loop\n");
 	}
-//	ft_memdel(commands); this needs to happen to avoid mem leak
 	return (parse_commands(commands)); // make this
 }
 
@@ -119,7 +157,7 @@ int		main(int ac, char **av)
 	size = 0;
 	if (ac != 2)
 	{
-		ft_printf("wrong number of arguments\n");
+		ft_printf("\n");
 		return (0);
 	}
 	else
@@ -127,9 +165,11 @@ int		main(int ac, char **av)
 		if (av[1])
 			size = get_size(av[1]);
 		ft_printf("size: %d\n", size);
-		stack_a = (int*)malloc(sizeof(int) * size);
-		stack_b = (int*)malloc(sizeof(int) * size);
-		commands = get_commans() // working on this
+		stack_a = (int*)ft_memalloc(sizeof(int) * size);
+		stack_b = (int*)ft_memalloc(sizeof(int) * size);
+		commands = get_commands(); // working on this
+		for (int i = 0; i <= size; i++)
+			ft_printf("%d\n", commands[i]);
 //		fill_stacka(av, stack_a, size);// make this
 //		execute_commands(commands, stack_a, stack_b, size) // make this
 //		check_correctness(stack_a);

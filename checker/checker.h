@@ -6,6 +6,7 @@
 # include "ft_printf.h"
 # include "libft.h"
 
+// if we hit a command that is 0 we will exit with giving an unkonown command error
 typedef enum	e_command
 {
 	SA = 1,

@@ -1,6 +1,8 @@
 NAME = checker
 
-SRC = checker.c \
+SRC = main.c \
+		get_stack.c \
+		get_commands.c \
 		
 OBJ = $(SRC:.c=.o)
 

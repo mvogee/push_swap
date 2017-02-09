@@ -31,32 +31,32 @@ int		translate_command(char *command)
 	return (0);
 }
 
-void	add_command(char *line, t_stack *stack)
+void	add_command(char *line, t_all *all)
 {
 	int		*tmp;
 	int		count;
 
 	count = 0;
-	stack->numcommands += 1;
-	tmp = (int*)ft_memalloc(sizeof(int) * stack->numcommands);
-	while (count < stack->numcommands - 1)
+	all->numcommands += 1;
+	tmp = (int*)ft_memalloc(sizeof(int) * all->numcommands);
+	while (count < all->numcommands - 1)
 	{
-		tmp[count] = stack->commands[count];
+		tmp[count] = all->commands[count];
 		count++;
 	}
 	tmp[count] = translate_command(line);
 	count = 0;
-	free(stack->commands);
-	stack->commands = (int*)ft_memalloc(sizeof(int) * stack->numcommands);
-	while (count < stack->numcommands)
+	free(all->commands);
+	all->commands = (int*)ft_memalloc(sizeof(int) * all->numcommands);
+	while (count < all->numcommands)
 	{
-		stack->commands[count] = tmp[count];
+		all->commands[count] = tmp[count];
 		count++;
 	}
 	free(tmp);
 }
 
-void	get_commands(t_stack *stack) // this needs to read form the standard input to get the arguments
+void	get_commands(t_all *all) // this needs to read form the standard input to get the arguments
 {
 	// read will not null term the input
 	char	*line;
@@ -67,6 +67,6 @@ void	get_commands(t_stack *stack) // this needs to read form the standard input 
 		if (!line || ft_strequ(line, ""))
 			break ;
 		else
-			add_command(line, stack);
+			add_command(line, all);
 	}
 }

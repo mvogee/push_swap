@@ -25,19 +25,42 @@ int		get_size(char *str)
 	return (count);
 }
 
-void	get_string_stack(char *str, t_stack *stack)
+t_stack	*add_end_node(t_stack *stacka, int value)
+{
+	t_stack		*node;
+	t_stack		*head;
+
+	node = (t_stack*)malloc(sizeof(t_stack));
+	node->value = value;
+	node->next = NULL;
+	if (stacka == NULL)
+	{
+		head = NULL;
+		stacka = node;
+		return (stacka);
+	}
+	else
+	{
+		head = stacka;
+		while (stacka->next)
+			stacka = stacka->next;
+		stacka->next = node;
+	}
+	return (head);
+}
+
+void	get_string_stack(char *str, t_all *all)
 {
 	int		count;
 
 	count = 0;
-	stack->size = get_size(str);
-	stack->stacka = (int*)ft_memalloc(sizeof(int) * stack->size);
-	stack->stackb = (int*)ft_memalloc(sizeof(int) * stack->size);
-	while (count < stack->size)
+	all->size = get_size(str);
+	all->stacka = NULL;
+	while (count < all->size)
 	{
 		if (ft_isdigit(*str))
 		{
-			stack->stacka[count] = ft_atoi(str);
+			all->stacka = add_end_node(all->stacka, ft_atoi(str));
 			count++;
 			while (ft_isdigit(*str))
 				str++;
@@ -76,19 +99,18 @@ int		get_size_list(int ac, char **av)
 	return (size);
 }
  // stacka[0] is the top of the stack
-void	get_list_stack(int ac, char **av, t_stack *stack)
+void	get_list_stack(int ac, char **av, t_all *all)
 {
 	int		count;
 	int		avpos;
 
 	count = 0;
 	avpos = 1;
-	stack->size = get_size_list(ac, av); // gets the size of the stack and error checks the input
-	stack->stacka = (int*)ft_memalloc(sizeof(int) * stack->size);
-	stack->stackb = (int*)ft_memalloc(sizeof(int) * stack->size);
-	while (count < stack->size)
+	all->size = get_size_list(ac, av);
+	all->stacka = NULL;
+	while (count < all->size)
 	{
-		stack->stacka[count] = ft_atoi(av[avpos]);
+		all->stacka = add_end_node(all->stacka, ft_atoi(av[avpos]));
 		avpos++;
 		count++;
 	}

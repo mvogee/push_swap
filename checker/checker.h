@@ -53,4 +53,10 @@ int		translate_command(char *command);
 void	add_command(char *line, t_stack *stack);
 void	get_commands(t_stack *stack);
 
+/*
+** execute_commands.c
+*/
+void	extend_execute(t_stack *stack, int count);
+void	execute_commands(t_stack *stack);
+
 #endif

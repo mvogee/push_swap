@@ -21,9 +21,11 @@ int		main(int ac, char **av)
 	// the stacks are initialized with the correct size for both of them.
 	stack.numcommands = 0;
 	get_commands(&stack); // read the commands from the standard input
-	for (int i = 0; i < stack.numcommands; i++)
-		ft_printf("%d\n",stack.commands[i]);
-	// execute_commands(&stack); // this will execute the commands
+	execute_commands(&stack); // this will execute the commands
 	// check_sort(stack); // check if the stack is sorted and dispaly propper output
 	return (0);
 }
+
+
+	// for (int i = 0; i < stack.numcommands; i++)
+		// ft_printf("%d\n",stack.commands[i]);

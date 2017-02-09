@@ -3,6 +3,7 @@ NAME = checker
 SRC = main.c \
 		get_stack.c \
 		get_commands.c \
+		execute_commands.c \
 		
 OBJ = $(SRC:.c=.o)
 
@@ -15,12 +16,12 @@ LINK = ../ft_printf/libftprintf.a \
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -o
+CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME):
-		$(CC) $(CFLAGS) $(NAME) $(SRC) $(INCLUDE) $(LINK)
+		$(CC) $(CFLAGS) -o $(NAME) $(SRC) $(INCLUDE) $(LINK)
 
 clean:
 	/bin/rm -f $(OBJ)

@@ -56,9 +56,8 @@ void	add_command(char *line, t_all *all)
 	free(tmp);
 }
 
-void	get_commands(t_all *all) // this needs to read form the standard input to get the arguments
+void	get_commands(t_all *all)
 {
-	// read will not null term the input
 	char	*line;
 
 	line = NULL;

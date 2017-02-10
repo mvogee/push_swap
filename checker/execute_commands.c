@@ -4,7 +4,12 @@
 
 void	extend_execute3(t_all *all, int count)
 {
-	if (all->commands[count] == RRR)
+	if (all->commands[count] == RRB)
+	{
+		if (all->sizeb > 1)
+			do_rev_rotate(&all->stackb);
+	}
+	else if (all->commands[count] == RRR)
 	{
 		if (all->sizea > 1)
 			do_rev_rotate(&all->stacka);
@@ -17,7 +22,12 @@ void	extend_execute3(t_all *all, int count)
 
 void	extend_execute2(t_all *all, int count)
 {
-	if (all->commands[count] == RB)
+	if (all->commands[count] == RA)
+	{
+		if (all->sizea > 1)
+			do_rotate(&all->stacka);
+	}
+	else if (all->commands[count] == RB)
 	{
 		if (all->sizeb > 1)
 			do_rotate(&all->stackb);
@@ -34,18 +44,20 @@ void	extend_execute2(t_all *all, int count)
 		if (all->sizea > 1)
 			do_rev_rotate(&all->stacka);
 	}
-	else if (all->commands[count] == RRB)
-	{
-		if (all->sizeb > 1)
-			do_rev_rotate(&all->stackb);
-	}
 	else
 		extend_execute3(all, count);
 }
 
 void	extend_execute(t_all *all, int count)
 {
-	if (all->commands[count] == PA)
+	if (all->commands[count] == SS)
+	{
+		if (all->sizea > 1)
+			do_swap(&all->stacka);
+		if (all->sizeb > 1)
+			do_swap(&all->stackb);
+	}
+	else if (all->commands[count] == PA)
 	{
 		if (all->sizeb < 1)
 			return ;
@@ -60,11 +72,6 @@ void	extend_execute(t_all *all, int count)
 		do_push(&all->stackb, &all->stacka);
 		all->sizea -= 1;
 		all->sizeb += 1;
-	}
-	else if (all->commands[count] == RA)
-	{
-		if (all->sizea > 1)
-			do_rotate(&all->stacka);
 	}
 	else
 		extend_execute2(all, count);
@@ -84,13 +91,6 @@ void	execute_commands(t_all *all)
 		}
 		else if (all->commands[count] == SB)
 		{
-			if (all->sizeb > 1)
-				do_swap(&all->stackb);
-		}
-		else if (all->commands[count] == SS)
-		{
-			if (all->sizea > 1)
-				do_swap(&all->stacka);
 			if (all->sizeb > 1)
 				do_swap(&all->stackb);
 		}

@@ -8,9 +8,32 @@ void	throw_error(void)
 	exit(0);
 }
 
+void	check_duplicates(t_stacks *stacks)
+{
+	t_stack		*cur;
+	t_stack		*forward;
+
+	cur = stacks->stacka;
+	if (stacks->sizea < 1)
+		return ;
+	while (cur->next)
+	{
+		forward = cur->next;
+		if (forawd->value == cur->value)
+			throw_error();
+		while (forward)
+		{
+			if (forawd->value == cur->value)
+				throw_error();
+			forward = forward->next;
+		}
+		cur = cur->next;
+	}
+}
+
 int		main(int ac, char **av)
 {
-	t_stacks	stacks;
+	t_stacks	*stacks;
 
 	if (ac < 2)
 		return (0);

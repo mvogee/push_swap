@@ -75,5 +75,6 @@ void	execute_commands(t_all *all);
 void	do_swap(t_stack **stack);
 void	do_push(t_stack **stack1, t_stack **stack2);
 void	do_rotate(t_stack **stack);
+void	do_rev_rotate(t_stack **stack);
 
 #endif

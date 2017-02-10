@@ -2,18 +2,18 @@
 
 #include "checker.h"
 
-// void	extend_execute3(t_all *all, int count)
-// {
-// 	if (all->commands[count] == RRR)
-// 	{
-// 		if (all->stacka > 1)
-// 			do_rra(&(all->stacka));
-// 		if (all->stackb > 1)
-// 			do_rrb(&(all->stackb));
-// 	}
-// 	else
-// 		throw_error();
-// }
+void	extend_execute3(t_all *all, int count)
+{
+	if (all->commands[count] == RRR)
+	{
+		if (all->sizea > 1)
+			do_rev_rotate(&all->stacka);
+		if (all->sizeb > 1)
+			do_rev_rotate(&all->stackb);
+	}
+	else
+		throw_error();
+}
 
 void	extend_execute2(t_all *all, int count)
 {
@@ -29,18 +29,18 @@ void	extend_execute2(t_all *all, int count)
 		if (all->sizeb > 1)
 			do_rotate(&all->stackb);
 	}
-	// else if (all->commands[count] == RRA)
-	// {
-	// 	if (all->stacka > 1)
-	// 		do_rra(&(all->stacka));
-	// }
-	// else if (all->commands[count] == RRB)
-	// {
-	// 	if (all->stackb > 1)
-	// 		do_rrb(&(all->stackb));
-	// }
-	// else
-	// 	extend_execute3(all, count);
+	else if (all->commands[count] == RRA)
+	{
+		if (all->sizea > 1)
+			do_rev_rotate(&all->stacka);
+	}
+	else if (all->commands[count] == RRB)
+	{
+		if (all->sizeb > 1)
+			do_rev_rotate(&all->stackb);
+	}
+	else
+		extend_execute3(all, count);
 }
 
 void	extend_execute(t_all *all, int count)
@@ -75,7 +75,7 @@ void	execute_commands(t_all *all)
 	int		count;
 
 	count = 0;
-	while (count <= all->numcommands)
+	while (count < all->numcommands)
 	{
 		if (all->commands[count] == SA)
 		{

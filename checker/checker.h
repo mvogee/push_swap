@@ -30,7 +30,7 @@ typedef struct	s_stack
 
 typedef struct	s_all
 {
-	t_stack	*stacka; //switch over to a linked list
+	t_stack	*stacka;
 	t_stack	*stackb;
 	int		size;
 	int		sizea;
@@ -65,13 +65,14 @@ void	get_commands(t_all *all);
 /*
 ** execute_commands.c
 */
+// void	extend_execute3(t_all *all, int count);
+// void	extend_execute2(t_all *all, int count);
 void	extend_execute(t_all *all, int count);
 void	execute_commands(t_all *all);
 /*
 ** command execution functions
 */
-void	do_sa(t_stack *stacka);
-void	do_sb(t_stack *stackb);
-void	do_ss(t_stack *stacka, t_stack *stackb);
+void	do_swap(t_stack **stack);
+void	do_push(t_stack **stack1, t_stack **stack2);
 
 #endif

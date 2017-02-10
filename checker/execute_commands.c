@@ -2,17 +2,73 @@
 
 #include "checker.h"
 
+// void	extend_execute3(t_all *all, int count)
+// {
+// 	if (all->commands[count] == RRR)
+// 	{
+// 		if (all->stacka > 1)
+// 			do_rra(&(all->stacka));
+// 		if (all->stackb > 1)
+// 			do_rrb(&(all->stackb));
+// 	}
+// 	else
+// 		throw_error();
+// }
+
+// void	extend_execute2(t_all *all, int count)
+// {
+// 	if (all->commands[count] == RB)
+// 	{
+// 		if (all->stackb > 1)
+// 			do_rb(&(all->stackb));
+// 	}
+// 	else if (all->commands[count] == RR)
+// 	{
+// 		if (all->stacka > 1)
+// 			do_ra(&(all->stacka));
+// 		if (all->stackb > 1)
+// 			do_rb(&(all->stackb));
+// 	}
+// 	else if (all->commands[count] == RRA)
+// 	{
+// 		if (all->stacka > 1)
+// 			do_rra(&(all->stacka));
+// 	}
+// 	else if (all->commands[count] == RRB)
+// 	{
+// 		if (all->stackb > 1)
+// 			do_rrb(&(all->stackb));
+// 	}
+// 	else
+// 		extend_execute3(all, count);
+// }
+
 void	extend_execute(t_all *all, int count)
 {
-	if (all->commands[count] == RRA)
-		do_rra(all->stacka);
-	else if (all->commands[count] == RRB)
-		do_rrb(all->stackb);
-	else if (all->commands[count] == RRR)
-		do_rrr(all->stacka, all->stackb);
-	else
-		throw_error();
-}	
+	if (all->commands[count] == PA)
+	{
+		if (all->sizeb < 1)
+			return ;
+		do_push(&(all->stacka), &(all->stackb));
+		all->sizeb -= 1;
+		all->sizea += 1;
+	}
+	else if (all->commands[count] == PB)
+	{
+		if (all->sizea < 1)
+			return ;
+		do_push(&all->stackb, &all->stacka);
+		all->sizea -= 1;
+		all->sizeb += 1;
+	}
+	// else if (all->commands[count] == RA)
+	// {
+	// 	if (all->sizea > 1)
+	// 		do_ra(&(all->stacka));
+	// }
+	// else
+	// 	extend_execute2(all, count);
+}
 
 void	execute_commands(t_all *all)
 {
@@ -22,21 +78,22 @@ void	execute_commands(t_all *all)
 	while (count < all->numcommands)
 	{
 		if (all->commands[count] == SA)
-			do_sa(all->stacka);
+		{
+			if (all->sizea > 1)
+				do_swap(&all->stacka);
+		}
 		else if (all->commands[count] == SB)
-			do_sb(all->stackb);
+		{
+			if (all->sizeb > 1)
+				do_swap(&all->stackb);
+		}
 		else if (all->commands[count] == SS)
-			do_ss(all->stacka, all->stackb);
-		else if (all->commands[count] == PA)
-			do_pa(all->stacka, all->stackb);
-		else if (all->commands[count] == PB)
-			do_pb(all->stacka, all->stackb);
-		else if (all->commands[count] == RA)
-			do_ra(all->stacka);
-		else if (all->commands[count] == RB)
-			do_rb(all->stackb);
-		else if (all->commands[count] == RR)
-			do_rr(all->stacka, all->stackb);
+		{
+			if (all->sizea > 1)
+				do_swap(&all->stacka);
+			if (all->sizeb > 1)
+				do_swap(&all->stackb);
+		}
 		else
 			extend_execute(all, count);
 		count++;

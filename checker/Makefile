@@ -3,11 +3,10 @@ NAME = checker
 SRC = main.c \
 		get_stack.c \
 		get_commands.c \
-		# execute_commands.c \
+		execute_commands.c \
 		\
-		../commands/sa.c \
-		../commands/sb.c \
-		../commands/ss.c \
+		../commands/swap.c \
+		../commands/push.c \
 		
 OBJ = $(SRC:.c=.o)
 

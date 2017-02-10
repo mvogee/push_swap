@@ -43,7 +43,7 @@ typedef struct	s_all
 ** main.c
 */
 void	throw_error(void);
-void	get_commands(t_all *all);
+void	check_sort(t_all *all);
 int		main(int ac, char **av);
 
 /*

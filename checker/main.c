@@ -8,6 +8,30 @@ void	throw_error(void)
 	exit(0);
 }
 
+void	check_sort(t_all *all)
+{
+	t_stack *tmp;
+
+	tmp = all->stacka;
+	if (all->sizeb != 0 || !tmp)
+	{
+		ft_printf("KO\n");
+		return ;
+	}
+	while (tmp->next)
+	{
+		ft_printf("a: %d, ", tmp->value);
+		ft_printf("%d\n", tmp->next->value);
+		if (tmp->value > tmp->next->value)
+		{
+			ft_printf("KO\n");
+			return ;
+		}
+		tmp = tmp->next;
+	}
+	ft_printf("OK\n");
+}
+
 int		main(int ac, char **av)
 {
 	t_all all;
@@ -22,8 +46,8 @@ int		main(int ac, char **av)
 	all.sizea = all.size;
 	all.sizeb = 0;
 	get_commands(&all); // read the commands from the standard input
-//	execute_commands(&all); // this will execute the commands
-	// check_sort(all); // check if the stack is sorted and dispaly propper output
+	execute_commands(&all); // this will execute the commands
+	check_sort(&all); // check if the stack is sorted and dispaly propper output
 	return (0);
 }
 

@@ -9,7 +9,8 @@ SRC = main.c \
 		../commands/push.c \
 		../commands/rotate.c \
 		../commands/rev_rotate.c \
-		
+		# can we find a better way of including the command functions?
+		# need to figure out the "good way" of making and cleaning from other directories
 OBJ = $(SRC:.c=.o)
 
 INCLUDE = -I../libft \

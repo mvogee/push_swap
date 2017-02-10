@@ -98,7 +98,7 @@ int		get_size_list(int ac, char **av)
 	}
 	return (size);
 }
- // stacka[0] is the top of the stack
+
 void	get_list_stack(int ac, char **av, t_all *all)
 {
 	int		count;
@@ -115,5 +115,3 @@ void	get_list_stack(int ac, char **av, t_all *all)
 		count++;
 	}
 }
-
-

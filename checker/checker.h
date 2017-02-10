@@ -66,7 +66,7 @@ void	get_commands(t_all *all);
 ** execute_commands.c
 */
 // void	extend_execute3(t_all *all, int count);
-// void	extend_execute2(t_all *all, int count);
+void	extend_execute2(t_all *all, int count);
 void	extend_execute(t_all *all, int count);
 void	execute_commands(t_all *all);
 /*
@@ -74,5 +74,6 @@ void	execute_commands(t_all *all);
 */
 void	do_swap(t_stack **stack);
 void	do_push(t_stack **stack1, t_stack **stack2);
+void	do_rotate(t_stack **stack);
 
 #endif

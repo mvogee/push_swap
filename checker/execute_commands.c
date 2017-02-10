@@ -15,33 +15,33 @@
 // 		throw_error();
 // }
 
-// void	extend_execute2(t_all *all, int count)
-// {
-// 	if (all->commands[count] == RB)
-// 	{
-// 		if (all->stackb > 1)
-// 			do_rb(&(all->stackb));
-// 	}
-// 	else if (all->commands[count] == RR)
-// 	{
-// 		if (all->stacka > 1)
-// 			do_ra(&(all->stacka));
-// 		if (all->stackb > 1)
-// 			do_rb(&(all->stackb));
-// 	}
-// 	else if (all->commands[count] == RRA)
-// 	{
-// 		if (all->stacka > 1)
-// 			do_rra(&(all->stacka));
-// 	}
-// 	else if (all->commands[count] == RRB)
-// 	{
-// 		if (all->stackb > 1)
-// 			do_rrb(&(all->stackb));
-// 	}
-// 	else
-// 		extend_execute3(all, count);
-// }
+void	extend_execute2(t_all *all, int count)
+{
+	if (all->commands[count] == RB)
+	{
+		if (all->sizeb > 1)
+			do_rotate(&all->stackb);
+	}
+	else if (all->commands[count] == RR)
+	{
+		if (all->sizea > 1)
+			do_rotate(&all->stacka);
+		if (all->sizeb > 1)
+			do_rotate(&all->stackb);
+	}
+	// else if (all->commands[count] == RRA)
+	// {
+	// 	if (all->stacka > 1)
+	// 		do_rra(&(all->stacka));
+	// }
+	// else if (all->commands[count] == RRB)
+	// {
+	// 	if (all->stackb > 1)
+	// 		do_rrb(&(all->stackb));
+	// }
+	// else
+	// 	extend_execute3(all, count);
+}
 
 void	extend_execute(t_all *all, int count)
 {
@@ -61,13 +61,13 @@ void	extend_execute(t_all *all, int count)
 		all->sizea -= 1;
 		all->sizeb += 1;
 	}
-	// else if (all->commands[count] == RA)
-	// {
-	// 	if (all->sizea > 1)
-	// 		do_ra(&(all->stacka));
-	// }
-	// else
-	// 	extend_execute2(all, count);
+	else if (all->commands[count] == RA)
+	{
+		if (all->sizea > 1)
+			do_rotate(&all->stacka);
+	}
+	else
+		extend_execute2(all, count);
 }
 
 void	execute_commands(t_all *all)
@@ -75,7 +75,7 @@ void	execute_commands(t_all *all)
 	int		count;
 
 	count = 0;
-	while (count < all->numcommands)
+	while (count <= all->numcommands)
 	{
 		if (all->commands[count] == SA)
 		{

@@ -7,6 +7,7 @@ SRC = main.c \
 		\
 		../commands/swap.c \
 		../commands/push.c \
+		../commands/rotate.c \
 		
 OBJ = $(SRC:.c=.o)
 

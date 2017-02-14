@@ -1,3 +1,5 @@
+#this makefile will not exist in the final. we will just compile this from the root.
+
 NAME = checker
 
 SRC = main.c \

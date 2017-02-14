@@ -1,6 +1,6 @@
 // 42 header here
 
-#include "checker.h"
+#include "push_swap.h"
 
 int		translate_command(char *command)
 {

@@ -1,6 +1,6 @@
 // 42 header here
 
-#include "checker.h"
+#include "push_swap.h"
 
 void	extend_execute3(t_all *all, int count)
 {

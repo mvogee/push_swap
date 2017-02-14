@@ -1,20 +1,20 @@
 // 42 header
 
 #include "push_swap.h"
+// we can use the same header for both checker and this just dont use all the struct vars
+// void	throw_error(void) // this function is in checker.c
+// {
+// 	write(2, "Error\n", 6);
+// 	exit(0);
+// }
 
-void	throw_error(void)
-{
-	write(2, "Error\n", 6);
-	exit(0);
-}
-
-void	check_duplicates(t_stacks *stacks)
+void	check_duplicates(t_all *all)
 {
 	t_stack		*cur;
 	t_stack		*forward;
 
-	cur = stacks->stacka;
-	if (stacks->sizea < 1)
+	cur = all->stacka;
+	if (all->sizea < 1)
 		return ;
 	while (cur->next)
 	{
@@ -33,15 +33,18 @@ void	check_duplicates(t_stacks *stacks)
 
 int		main(int ac, char **av)
 {
-	t_stacks	*stacks;
+	t_all	*all;
 
 	if (ac < 2)
 		return (0);
 	if (ac == 2)
-		get_string_stack(av[1], &stacks);
+		get_string_stack(av[1], &all);
 	else
-		get_list_stack(ac, av, &stacks);
-	check_duplicates(&stacks); // steps through stack and checsk for dups
-//	push_swap(&stacks); // main algorithms
+		get_list_stack(ac, av, &all);
+	all.sizea = all.size;
+	all.commands = NULL;
+
+	check_duplicates(&all); // steps through stack and checsk for dups
+	push_swap(&all); // main algorithms
 
 }

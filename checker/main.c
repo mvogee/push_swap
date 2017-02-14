@@ -1,6 +1,6 @@
 // 42 header goes here
 
-#include "checker.h"
+#include "push_swap.h"
 
 void	throw_error(void)
 {

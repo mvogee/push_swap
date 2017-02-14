@@ -1,7 +1,6 @@
 // 42 header
 
-#include "../checker/checker.h"
-//#include "push_swap/push_swap.h"
+#include "push_swap.h"
 
 void	do_rev_rotate(t_stack **stack)
 {

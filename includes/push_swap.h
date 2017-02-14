@@ -1,5 +1,12 @@
-#ifndef CHECKER_H
-# define CHECKER_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+# include <unistd.h>
+# include <stdlib.h>
+# include "ft_printf.h"
+# include "libft.h"
+
+
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -44,7 +51,8 @@ typedef struct		s_all
 */
 void				throw_error(void);
 void				check_sort(t_all *all);
-int					main(int ac, char **av);
+int					main(int ac, char **av); // this covers both progams
+void				check_duplicates(t_all *all);
 /*
 ** get_stack.c
 */
@@ -75,5 +83,6 @@ void				do_swap(t_stack **stack);
 void				do_push(t_stack **stack1, t_stack **stack2);
 void				do_rotate(t_stack **stack);
 void				do_rev_rotate(t_stack **stack);
+
 
 #endif

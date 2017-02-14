@@ -19,11 +19,11 @@ void	check_duplicates(t_all *all)
 	while (cur->next)
 	{
 		forward = cur->next;
-		if (forawd->value == cur->value)
+		if (forward->value == cur->value)
 			throw_error();
 		while (forward)
 		{
-			if (forawd->value == cur->value)
+			if (forward->value == cur->value)
 				throw_error();
 			forward = forward->next;
 		}
@@ -35,15 +35,16 @@ int		main(int ac, char **av)
 {
 	t_all	*all;
 
+	all = NULL;
 	if (ac < 2)
 		return (0);
 	if (ac == 2)
-		get_string_stack(av[1], &all);
+		get_string_stack(av[1], all);
 	else
-		get_list_stack(ac, av, &all);
-	all.sizea = all.size;
-	all.commands = NULL;
-	check_duplicates(&all); // steps through stack and checsk for dups
+		get_list_stack(ac, av, all);
+	all->sizea = all->size;
+	all->commands = NULL;
+	check_duplicates(all); // steps through stack and checsk for dups
 //	push_swap(&all); // main algorithms
 
 }

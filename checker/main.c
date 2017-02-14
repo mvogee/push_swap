@@ -2,12 +2,6 @@
 
 #include "push_swap.h"
 
-void	throw_error(void)
-{
-	write(2, "Error\n", 6);
-	exit(0);
-}
-
 void	check_sort(t_all *all)
 {
 	t_stack *tmp;

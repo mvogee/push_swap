@@ -43,8 +43,7 @@ int		main(int ac, char **av)
 		get_list_stack(ac, av, &all);
 	all.sizea = all.size;
 	all.commands = NULL;
-
 	check_duplicates(&all); // steps through stack and checsk for dups
-	push_swap(&all); // main algorithms
+//	push_swap(&all); // main algorithms
 
 }

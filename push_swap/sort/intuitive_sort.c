@@ -62,28 +62,48 @@ int		check_swapb(t_stack *stackb)
 	return (0);
 }
 
-void	do_actions(t_all **all, int a, int b)
+void	do_actions(t_all **all, int **a, int **b)
 {
 	if (a == SA && b == SB)
 	{
 		ft_printf("ss\n");
 		do_swap(&all->stacka);
 		do_swap(&all->stackb);
+		*a = 0;
+		*b = 0;
 	}
 	else if (a == SA)
 	{
 		ft_printf("sa\n");
 		do_swap(&all->stacka);
+		*a = 0;
 	}
 	else if (b == SB)
 	{
 		ft_printf("sb\n");
 		do_swap(&all->stackb);
+		*b = 0;
 	}
 	else if (a == RRA)
 	{
 		ft_printf("rra\n");
 		do_reverse_rotate(&all->stacka);
+		*a = 0;
+	}
+}
+
+void	sort_b(int **b, t_stack **stackb) // what does this need to do?
+{
+	if (*b)
+	{
+		do_baction(b, stackb)
+		b = 0;
+	}
+	if (*b = check_swapb(stackb))
+	{
+		*b = 0;
+		ft_printf("sb\n");
+		do_swap(stackb);
 	}
 }
 
@@ -100,19 +120,21 @@ void	push_swap(t_all *all)
 	{
 		a_action = check_swapa(all->stacka);
 		b_action = check_swapb(all->stackb);
-		if (a_action || b_aciton)
-			do_actions(&all, a_aciton, b_action); and print action if only b_action is active dont execute yet
-		sorted = check_sorted(all);
-		if (all->stacka->value <= split && !sorted)
+		do_actions(&all, &a_action, &b_action);
+		if (sorted = check_sorted(all->stacka))
+			break ;
+		if (all->stacka->value <= split)
 		{
-			do_push(&all->stackb, &all->stacka); // these will need to be modded for case where one o
-			//b_action = get_b_action() // make this
+			do_baction(&b_action, &all->stackb);
+			all->sizea -= 1;
+			all->sizeb += 1;
+			do_push(&all->stackb, &all->stacka);
+			sort_b(&b_action, &all->stackb); // make this needs to find the best action to take for b
+			continue ;
 		}
-		if (!sorted)
-			do_actions(&all, RRA, 0);
-		else
-			finish_b(&all); // make this. make sure b is sorted and push all elems to a
+		sort_b(&b_action, &all->stackb); // make this. needs to find the best action to take to sort b
 	}
+	// make sure all be is sorted and push it to a
 }
 
 // method brainbaby aka nieve

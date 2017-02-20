@@ -8,7 +8,7 @@ void	do_push(t_stack **pushto, t_stack **pushfrom)
 	t_stack	*newhead_from;
 
 	newhead_to = (*pushfrom);
-	(*pushto)->prev = newheat_to;
+	(*pushto)->prev = newhead_to;
 	newhead_from = (*pushfrom)->next;
 	(*pushfrom)->next->prev = NULL;
 	newhead_to->next = *pushto;

@@ -25,7 +25,7 @@ int		get_size(char *str)
 	return (count);
 }
 
-t_stack	*add_end_node(t_stack *stacka, int value);
+t_stack	*add_end_node(t_stack *stacka, int value)
 {
 	t_stack		*node;
 	t_stack		*head;

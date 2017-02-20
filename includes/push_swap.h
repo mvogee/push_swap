@@ -6,13 +6,6 @@
 # include "ft_printf.h"
 # include "libft.h"
 
-
-
-# include <unistd.h>
-# include <stdlib.h>
-# include "ft_printf.h"
-# include "libft.h"
-
 typedef enum		e_command
 {
 	SA = 1,
@@ -32,6 +25,7 @@ typedef struct		s_stack
 {
 	int				value;
 	struct s_stack	*next;
+	struct s_stack	*prev;
 
 }					t_stack;
 
@@ -80,7 +74,7 @@ void				execute_commands(t_all *all);
 ** command execution functions
 */
 void				do_swap(t_stack **stack);
-void				do_push(t_stack **stack1, t_stack **stack2);
+void				do_push(t_stack **pushto, t_stack **pushfrom);
 void				do_rotate(t_stack **stack);
 void				do_rev_rotate(t_stack **stack);
 

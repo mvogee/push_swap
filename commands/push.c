@@ -2,14 +2,16 @@
 
 #include "push_swap.h"
 
-void	do_push(t_stack **stack1, t_stack **stack2)
+void	do_push(t_stack **pushto, t_stack **pushfrom)
 {
-	t_stack	*newhead_one;
-	t_stack	*newhead_two;
+	t_stack	*newhead_to;
+	t_stack	*newhead_from;
 
-	newhead_one = (*stack2);
-	newhead_two = (*stack2)->next;
-	newhead_one->next = *stack1;
-	*stack1 = newhead_one;
-	*stack2 = newhead_two;
+	newhead_to = (*pushfrom);
+	(*pushto)->prev = newheat_to;
+	newhead_from = (*pushfrom)->next;
+	(*pushfrom)->next->prev = NULL;
+	newhead_to->next = *pushto;
+	*pushto = newhead_to;
+	*pushfrom = newhead_from;
 }

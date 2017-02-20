@@ -25,7 +25,7 @@ int		get_size(char *str)
 	return (count);
 }
 
-t_stack	*add_end_node(t_stack *stacka, int value)
+t_stack	*add_end_node(t_stack *stacka, int value);
 {
 	t_stack		*node;
 	t_stack		*head;
@@ -33,6 +33,7 @@ t_stack	*add_end_node(t_stack *stacka, int value)
 	node = (t_stack*)malloc(sizeof(t_stack));
 	node->value = value;
 	node->next = NULL;
+	node->prev = NULL;
 	if (stacka == NULL)
 	{
 		head = NULL;
@@ -44,6 +45,7 @@ t_stack	*add_end_node(t_stack *stacka, int value)
 		head = stacka;
 		while (stacka->next)
 			stacka = stacka->next;
+		node->prev = stacka;
 		stacka->next = node;
 	}
 	return (head);

@@ -5,25 +5,17 @@
 void	do_rotate(t_stack **stack)
 {
 	t_stack	*old_head;
-	t_stack	*last_node;
-	t_stack	*previous;
-	int		count;
+	t_stack	*new_head;
+	t_stack	*old_end;
 
 	old_head = *stack;
-	previous = *stack;
-	last_node = (*stack)->next;
-	count = 0;
-	while (last_node->next)
-	{
-		previous = previous->next;
-		last_node = last_node->next;
-		count++;
-	}
-	if (count > 0)
-		last_node->next = old_head->next;
-	else
-		last_node->next = old_head;
-	previous->next = old_head;
+	new_head = (*stack)->next;
+	new_head->prev = NULL;
+	old_end = (*stack)->next;
+	while (old_end->next)
+		old_end = old_end->next;
+	old_end->next = old_head;
+	old_head->prev = old_end;
 	old_head->next = NULL;
-	*stack = last_node;
+	*stack = new_head;
 }

@@ -22,10 +22,10 @@ void	do_rev_rotate(t_stack **stack)
 	if (count > 0)
 		last_node->next = old_head->next;
 	else
-		last_node->next = old_head;
+		old_head->next = NULL;
+	last_node->next = old_head;
 	last_node->prev = NULL;
-	previous->next = old_head;
-	old_head->next = NULL;
-	old_head->prev = previous;
+	previous->next = NULL;
+	old_head->prev = last_node;
 	*stack = last_node;
 }

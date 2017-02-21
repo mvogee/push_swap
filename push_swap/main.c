@@ -33,19 +33,20 @@ void	check_duplicates(t_all *all)
 
 int		main(int ac, char **av)
 {
-	t_all	*all;
+	t_all	all;
 
 	ft_bzero(&all, sizeof(t_all));
-	//all = NULL;
+//	all = NULL;
 	if (ac < 2)
 		return (0);
 	if (ac == 2)
-		get_string_stack(av[1], all);
+		get_string_stack(av[1], &all);
 	else
-		get_list_stack(ac, av, all);
-	all->sizea = all->size;
-	all->commands = NULL;
-	check_duplicates(all); // steps through stack and checsk for dups
-//	push_swap(&all); // main algorithms
+		get_list_stack(ac, av, &all);
+	all.sizea = all.size;
+	all.commands = NULL;
+	check_duplicates(&all); // steps through stack and checsk for dups
+	push_swap(&all); // main algorithms // there are seg fault in here
+	ft_printf("done\n");
 
 }

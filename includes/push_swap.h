@@ -79,4 +79,14 @@ void				do_rotate(t_stack **stack);
 void				do_rev_rotate(t_stack **stack);
 
 
+/*
+** experimental.c
+*/
+void				three_sort(t_stack **stack, char c);
+int					check_sorted(t_stack *stack);
+int					get_lastval(t_stack *stack);
+void				sort_b(t_stack **stack);
+void				start_pushback(t_all **all);
+void				push_swap(t_all *all);
+
 #endif

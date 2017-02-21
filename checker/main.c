@@ -26,7 +26,7 @@ void	check_sort(t_all *all)
 
 int		main(int ac, char **av)
 {
-	t_all all;
+	t_all	all;
 
 	if (ac < 2)
 		return (0);

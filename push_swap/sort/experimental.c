@@ -86,6 +86,7 @@ void	start_pushback(t_all **all)
 	int			count;
 
 	count = 0;
+	print_stacks(*all);
 	while ((*all)->sizeb || count)
 	{
 		if ((*all)->stackb->value >  (*all)->stacka->next->value)
@@ -110,7 +111,7 @@ void	start_pushback(t_all **all)
 		}
 		else
 		{
-			do_push(&(*all)->stacka, &(*all)->stackb);
+			do_push(&(*all)->stacka, &(*all)->stackb); // seg faulting
 			ft_printf("pa\n");
 			(*all)->sizea += 1;
 			(*all)->sizeb -= 1;
@@ -126,44 +127,35 @@ void	push_swap(t_all *all)
 	int 		avaln;
 	if (all->sizea <= 3)
 		three_sort(&all->stacka, 'a');
-	ft_printf("a\n");
 	sorted = check_sorted(all->stacka);
 	while (!sorted)
 	{
 		avalue = all->stacka->value;
 		aval_one = all->stacka->next->value;
 		avaln = get_lastval(all->stacka);
-		ft_printf("b\n");
 		if (all->sizea <= 3)
 			three_sort(&all->stacka, 'a');
 		else if ((avalue > aval_one && aval_one > avaln) || avalue > avaln)
 		{
-			ft_printf("c\n");
 			do_rev_rotate(&all->stacka);
 			ft_printf("rra\n");
 		}
 		else if (avalue > aval_one)
 		{
-			ft_printf("d\n");
 			do_swap(&all->stacka);
 			ft_printf("sa\n");
 		}
 		else 
 		{
-			ft_printf("e\n");
-			do_push(&all->stackb, &all->stacka); // seg faulting here
-			ft_printf("fault\n");
+			do_push(&all->stackb, &all->stacka);
 			all->sizea -= 1;
 			all->sizeb += 1;
 			ft_printf("pb\n");
 			sort_b(&all->stackb); // should try to find a way to make commands run alongside eachother epecially in the case of where we can use the double commands.
 		}
-		ft_printf("f\n");
 		if (check_sorted(all->stacka))
-			start_pushback(&all);
-		ft_printf("g\n");
+			start_pushback(&all); // segfault here
 		sorted = check_sorted(all->stacka);
-		ft_printf("end\n");
 			// start pushback will take from b one at a time making sure the sort is still correct as you go
 	}
 }

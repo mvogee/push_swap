@@ -11,7 +11,8 @@ void	do_push(t_stack **pushto, t_stack **pushfrom)
 	if (*pushto)
 		(*pushto)->prev = newhead_to;
 	newhead_from = (*pushfrom)->next;
-	(*pushfrom)->next->prev = NULL;
+	if (newhead_from)
+		(*pushfrom)->next->prev = NULL;
 	newhead_to->next = *pushto;
 	*pushto = newhead_to;
 	*pushfrom = newhead_from;

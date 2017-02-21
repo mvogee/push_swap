@@ -47,6 +47,7 @@ void				throw_error(void);
 void				check_sort(t_all *all);
 int					main(int ac, char **av); // this covers both progams
 void				check_duplicates(t_all *all);
+void				print_stacks(t_all *all);
 /*
 ** get_stack.c
 */

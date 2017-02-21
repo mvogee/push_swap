@@ -7,6 +7,27 @@
 // 	write(2, "Error\n", 6);
 // 	exit(0);
 // }
+void	print_stacks(t_all *all)
+{
+	t_stack *a;
+	t_stack *b;
+
+	a = all->stacka;
+	b = all->stackb;
+	ft_printf("B| ");
+	while (b)
+	{
+		ft_printf("%d ", b->value);
+		b = b->next;
+	}
+	ft_printf("\nA| ");
+	while (a)
+	{
+		ft_printf("%d ", a->value);
+		a = a->next;
+	}
+	ft_printf("\n");
+}
 
 void	check_duplicates(t_all *all)
 {
@@ -47,6 +68,6 @@ int		main(int ac, char **av)
 	all.commands = NULL;
 	check_duplicates(&all); // steps through stack and checsk for dups
 	push_swap(&all); // main algorithms // there are seg fault in here
-	ft_printf("done\n");
+	print_stacks(&all);
 
 }

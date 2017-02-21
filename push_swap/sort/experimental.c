@@ -86,16 +86,16 @@ void	start_pushback(t_all **all)
 	int			count;
 
 	count = 0;
-	print_stacks(*all);
 	while ((*all)->sizeb || count)
 	{
-		if ((*all)->stackb->value >  (*all)->stacka->next->value)
+	//	print_stacks(*all);
+		if ((*all)->stackb && (*all)->stackb->value > (*all)->stacka->next->value)
 		{
 			do_rotate(&(*all)->stacka);
 			ft_printf("ra\n");
 			count++;
 		}
-		else if ((*all)->stackb->value < (*all)->stacka->next->value && (*all)->stackb->value > (*all)->stacka->value)
+		else if ((*all)->stackb && (*all)->stackb->value < (*all)->stacka->next->value && (*all)->stackb->value > (*all)->stacka->value)
 		{
 			do_push(&(*all)->stacka, &(*all)->stackb);
 			do_swap(&(*all)->stacka);
@@ -104,17 +104,23 @@ void	start_pushback(t_all **all)
 			(*all)->sizeb -= 1;
 			(*all)->sizea += 1;
 		}
-		else if (count && (*all)->stackb->value < get_lastval((*all)->stacka))
+		else if (count && (*all)->stackb && (*all)->stackb->value < get_lastval((*all)->stacka)) // seg fault because b is empty
 		{
 			do_rev_rotate(&(*all)->stacka);
+			ft_printf("rra\n");
 			count--;
 		}
-		else
+		else if ((*all)->stackb)
 		{
-			do_push(&(*all)->stacka, &(*all)->stackb); // seg faulting
+			do_push(&(*all)->stacka, &(*all)->stackb);
 			ft_printf("pa\n");
 			(*all)->sizea += 1;
 			(*all)->sizeb -= 1;
+		}
+		else if (count)
+		{
+			do_rev_rotate(&(*all)->stacka);
+			count--;
 		}
 	}
 }

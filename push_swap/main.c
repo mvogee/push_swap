@@ -35,7 +35,8 @@ int		main(int ac, char **av)
 {
 	t_all	*all;
 
-	all = NULL;
+	ft_bzero(&all, sizeof(t_all));
+	//all = NULL;
 	if (ac < 2)
 		return (0);
 	if (ac == 2)

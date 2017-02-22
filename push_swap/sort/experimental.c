@@ -104,7 +104,7 @@ void	start_pushback(t_all **all)
 			(*all)->sizeb -= 1;
 			(*all)->sizea += 1;
 		}
-		else if (count && (*all)->stackb && (*all)->stackb->value < get_lastval((*all)->stacka)) // seg fault because b is empty
+		else if (count && (*all)->stackb && (*all)->stackb->value < get_lastval((*all)->stacka))
 		{
 			do_rev_rotate(&(*all)->stacka);
 			ft_printf("rra\n");
@@ -120,6 +120,7 @@ void	start_pushback(t_all **all)
 		else if (count)
 		{
 			do_rev_rotate(&(*all)->stacka);
+			ft_printf("rra\n");
 			count--;
 		}
 	}

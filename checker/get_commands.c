@@ -61,7 +61,7 @@ void	get_commands(t_all *all)
 	char	*line;
 
 	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	while (get_next_line(STDIN_FILENO, &line) > 0) // here
 	{
 		if (!line || ft_strequ(line, ""))
 			break ;

@@ -68,6 +68,6 @@ int		main(int ac, char **av)
 	all.commands = NULL;
 	check_duplicates(&all); // steps through stack and checsk for dups
 	push_swap(&all); // main algorithms // there are seg fault in here
-	print_stacks(&all);
+//	print_stacks(&all);
 
 }

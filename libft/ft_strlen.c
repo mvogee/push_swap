@@ -17,6 +17,8 @@ unsigned long	ft_strlen(char *str)
 	unsigned long	count;
 
 	count = 0;
+	if (!str)
+		return (0);
 	while (str[count])
 		count++;
 	return (count);

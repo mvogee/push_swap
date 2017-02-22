@@ -69,6 +69,7 @@ SRC = ft_isalpha.c \
 		ft_lltoa.c \
 		ft_itoa_base_unsigned.c \
 		ft_abs.c \
+		ft_atol.c \
 
 OBJS = $(SRC:.c=.o)
 

@@ -3,6 +3,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h> // is this alowed
 # include "ft_printf.h"
 # include "libft.h"
 
@@ -52,7 +53,7 @@ void				print_stacks(t_all *all);
 ** get_stack.c
 */
 int					get_size(char *str);
-t_stack				*add_end_node(t_stack *stacka, int value);
+t_stack				*add_end_node(t_stack *stacka, long value);
 void				get_string_stack(char *str, t_all *all);
 int					get_size_list(int ac, char **av);
 void				get_list_stack(int ac, char **av, t_all *all);

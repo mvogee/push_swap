@@ -25,13 +25,15 @@ int		get_size(char *str)
 	return (count);
 }
 
-t_stack	*add_end_node(t_stack *stacka, int value)
+t_stack	*add_end_node(t_stack *stacka, long value)
 {
 	t_stack		*node;
 	t_stack		*head;
 
+	if (value > INT_MAX || value < INT_MIN)
+		throw_error();
 	node = (t_stack*)malloc(sizeof(t_stack));
-	node->value = value;
+	node->value = (int)value;
 	node->next = NULL;
 	node->prev = NULL;
 	if (stacka == NULL)
@@ -62,7 +64,7 @@ void	get_string_stack(char *str, t_all *all)
 	{
 		if (ft_isdigit(*str))
 		{
-			all->stacka = add_end_node(all->stacka, ft_atoi(str));
+			all->stacka = add_end_node(all->stacka, ft_atol(str));
 			count++;
 			while (ft_isdigit(*str))
 				str++;
@@ -112,7 +114,7 @@ void	get_list_stack(int ac, char **av, t_all *all)
 	all->stacka = NULL;
 	while (count < all->size)
 	{
-		all->stacka = add_end_node(all->stacka, ft_atoi(av[avpos]));
+		all->stacka = add_end_node(all->stacka, ft_atol(av[avpos]));
 		avpos++;
 		count++;
 	}

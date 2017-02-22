@@ -10,6 +10,7 @@ SRC1 =	./checker/main.c \
 #push_swap
 SRC2 =	./push_swap/main.c \
 		./push_swap/sort/experimental.c \
+		./push_swap/sort/quicksort.c \
 
 #commands
 SHAREDSRC =	get_stack.c \

@@ -90,5 +90,9 @@ int					get_lastval(t_stack *stack);
 void				sort_b(t_stack **stack);
 void				start_pushback(t_all **all);
 void				push_swap(t_all *all);
+/*
+** quicksort.c
+*/
+void		*quicksort(int *arr, int start, int end);
 
 #endif

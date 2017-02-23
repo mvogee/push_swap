@@ -16,7 +16,7 @@ static int	partition(int *arr, int left, int right)
 	int pivot;
 
 	pivot = arr[left];
-	while (right > left)
+	while (left < right)
 	{
 		while (arr[left] <= pivot)
 			left++;

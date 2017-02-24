@@ -44,7 +44,6 @@ typedef struct		s_all
 /*
 ** main.c
 */
-void				throw_error(void);
 void				check_sort(t_all *all);
 int					main(int ac, char **av); // this covers both progams
 void				check_duplicates(t_all *all);
@@ -79,8 +78,6 @@ void				do_swap(t_stack **stack);
 void				do_push(t_stack **pushto, t_stack **pushfrom);
 void				do_rotate(t_stack **stack);
 void				do_rev_rotate(t_stack **stack);
-
-
 /*
 ** experimental.c
 */
@@ -91,8 +88,10 @@ void				sort_b(t_stack **stack);
 void				start_pushback(t_all **all);
 void				push_swap(t_all *all);
 /*
-** quicksort.c
+** error.c
 */
-void		*quicksort(int *arr, int start, int end);
+void				free_list(t_stack *stack);
+void				throw_error_free(t_stack *stack);
+void				throw_error(void);
 
 #endif

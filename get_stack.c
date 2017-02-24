@@ -1,10 +1,20 @@
-// 42 header here
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_stack.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvogee <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/24 12:15:50 by mvogee            #+#    #+#             */
+/*   Updated: 2017/02/24 12:15:58 by mvogee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
 int		get_size(char *str)
 {
-	int		count;
+	int			count;
 
 	count = 0;
 	while (str && *str)
@@ -13,7 +23,8 @@ int		get_size(char *str)
 			str++;
 		if (*str && !ft_isdigit(*str) && *str != '-')
 			throw_error();
-		else if (*str && (ft_isdigit(*str) || (*str == '-' && ft_isdigit(*(str + 1)))))
+		else if (*str && (ft_isdigit(*str) || (*str == '-' &&
+			ft_isdigit(*(str + 1)))))
 		{
 			count++;
 			while (*str && (ft_isdigit(*str) || *str == '-'))
@@ -57,7 +68,7 @@ t_stack	*add_end_node(t_stack *stacka, long value)
 
 void	get_string_stack(char *str, t_all *all)
 {
-	int		count;
+	int			count;
 
 	count = 0;
 	all->size = get_size(str);
@@ -78,9 +89,9 @@ void	get_string_stack(char *str, t_all *all)
 
 int		get_size_list(int ac, char **av)
 {
-	int		count;
-	int		count2;
-	int		size;
+	int			count;
+	int			count2;
+	int			size;
 
 	count = 1;
 	size = 0;
@@ -107,8 +118,8 @@ int		get_size_list(int ac, char **av)
 
 void	get_list_stack(int ac, char **av, t_all *all)
 {
-	int		count;
-	int		avpos;
+	int			count;
+	int			avpos;
 
 	count = 0;
 	avpos = 1;

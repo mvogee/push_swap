@@ -17,7 +17,7 @@ void	extend_execute3(t_all *all, int count)
 			do_rev_rotate(&all->stackb);
 	}
 	else
-		throw_error();
+		throw_error_free(all->stacka);
 }
 
 void	extend_execute2(t_all *all, int count)

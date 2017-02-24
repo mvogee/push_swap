@@ -1,4 +1,14 @@
-// 42 header goes here
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvogee <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/24 12:52:49 by mvogee            #+#    #+#             */
+/*   Updated: 2017/02/24 12:52:57 by mvogee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -58,16 +68,22 @@ void	check_duplicates(t_all *all)
 	{
 		forward = cur->next;
 		if (forward->value == cur->value)
-			throw_error();
+			throw_error_free(all->stacka);
 		while (forward)
 		{
 			if (forward->value == cur->value)
-				throw_error();
+				throw_error_free(all->stacka);
 			forward = forward->next;
 		}
 		cur = cur->next;
 	}
 }
+
+/*
+** add these lines to bottom of main to easily see stack at the end of run and how many commands ran
+** 	print_stacks(&all);
+**	ft_printf("commands run: %d\n", all.numcommands);
+*/
 
 int		main(int ac, char **av)
 {
@@ -82,11 +98,12 @@ int		main(int ac, char **av)
 	all.numcommands = 0;
 	all.sizea = all.size;
 	all.sizeb = 0;
-	check_duplicates(&all); // seg fault is happening in here
+	check_duplicates(&all);
 	get_commands(&all);
 	execute_commands(&all);
 	check_sort(&all);
-	print_stacks(&all);
-	ft_printf("commands run: %d\n", all.numcommands);
+	free_list(all.stacka);
+	if (all.commands)
+		free(all.commands);
 	return (0);
 }

@@ -88,7 +88,6 @@ void	start_pushback(t_all **all)
 	count = 0;
 	while ((*all)->sizeb || count)
 	{
-	//	print_stacks(*all);
 		if ((*all)->stackb && (*all)->stackb->value > (*all)->stacka->next->value)
 		{
 			do_rotate(&(*all)->stacka);
@@ -132,6 +131,7 @@ void	push_swap(t_all *all)
 	int 		avalue;
 	int 		aval_one;
 	int 		avaln;
+	
 	if (all->sizea <= 3)
 		three_sort(&all->stacka, 'a');
 	sorted = check_sorted(all->stacka);
@@ -158,11 +158,10 @@ void	push_swap(t_all *all)
 			all->sizea -= 1;
 			all->sizeb += 1;
 			ft_printf("pb\n");
-			sort_b(&all->stackb); // should try to find a way to make commands run alongside eachother epecially in the case of where we can use the double commands.
+			sort_b(&all->stackb);
 		}
 		if (check_sorted(all->stacka))
-			start_pushback(&all); // segfault here
+			start_pushback(&all);
 		sorted = check_sorted(all->stacka);
-			// start pushback will take from b one at a time making sure the sort is still correct as you go
 	}
 }

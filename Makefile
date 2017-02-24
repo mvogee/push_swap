@@ -1,16 +1,16 @@
-CHECKER = checker.ex
+CHECKER = checker
 
-PSWAP = push_swap.ex
+PSWAP = push_swap
 
 #checker
-SRC1 =	./checker/main.c \
-		./checker/get_commands.c \
-		./checker/execute_commands.c \
+SRC1 =	./check/main.c \
+		./check/get_commands.c \
+		./check/execute_commands.c \
 
 #push_swap
-SRC2 =	./push_swap/main.c \
-		./push_swap/sort/experimental.c \
-		./push_swap/sort/quicksort.c \
+SRC2 =	./pswap/main.c \
+		./pswap/sort/experimental.c \
+		./pswap/sort/quicksort.c \
 
 #commands
 SHAREDSRC =	get_stack.c \
@@ -28,7 +28,7 @@ INCLUDE = -I./libft \
 			-I./ft_printf \
 			-I./commands \
 			-I./includes \
-			-I./push_swap/sort \
+			-I./pswap/sort \
 			
 LINK = ./ft_printf/libftprintf.a \
 		./libft/libft.a \

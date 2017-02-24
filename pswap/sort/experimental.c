@@ -1,4 +1,14 @@
-// 42 header
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   experimental.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvogee <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/24 13:28:08 by mvogee            #+#    #+#             */
+/*   Updated: 2017/02/24 13:28:13 by mvogee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -31,54 +41,29 @@ void	three_sort(t_stack **stack, char c)
 	}
 }
 
-int		check_sorted(t_stack *stack)
+int		pushback_extention(t_all **all, int count)
 {
-	t_stack		*cpy;
-
-	cpy = stack;
-	while (cpy->next)
+	if (count && (*all)->stackb &&
+		(*all)->stackb->value < get_lastval((*all)->stacka))
 	{
-		if (cpy->value > cpy->next->value)
-			return (0);
-		cpy = cpy->next;
+		do_rev_rotate(&(*all)->stacka);
+		ft_printf("rra\n");
+		count--;
 	}
-	return (1);
-}
-
-int		get_lastval(t_stack *stack)
-{
-	t_stack		*tmp;
-
-	tmp = stack;
-	while (tmp->next)
-		tmp = tmp->next;
-	return (tmp->value);
-}
-
-void	sort_b(t_stack **stack)
-{
-	int			sorted;
-	int			count;
-
-	count = 0;
-	sorted = check_sorted(*stack);
-	if (!sorted)
+	else if ((*all)->stackb)
 	{
-		while (count < 1)
-		{
-			if ((*stack)->value < (*stack)->next->value)
-			{
-				do_swap(stack);
-				ft_printf("sb\n");
-			}
-			else if ((*stack)->value < get_lastval(*stack))
-			{
-				do_rev_rotate(stack);
-				ft_printf("rrb\n");
-			}
-			count++;
-		}
+		do_push(&(*all)->stacka, &(*all)->stackb);
+		ft_printf("pa\n");
+		(*all)->sizea += 1;
+		(*all)->sizeb -= 1;
 	}
+	else if (count)
+	{
+		do_rev_rotate(&(*all)->stacka);
+		ft_printf("rra\n");
+		count--;
+	}
+	return (count);
 }
 
 void	start_pushback(t_all **all)
@@ -88,40 +73,47 @@ void	start_pushback(t_all **all)
 	count = 0;
 	while ((*all)->sizeb || count)
 	{
-		if ((*all)->stackb && (*all)->stackb->value > (*all)->stacka->next->value)
+		if ((*all)->stackb &&
+			(*all)->stackb->value > (*all)->stacka->next->value)
 		{
 			do_rotate(&(*all)->stacka);
 			ft_printf("ra\n");
 			count++;
 		}
-		else if ((*all)->stackb && (*all)->stackb->value < (*all)->stacka->next->value && (*all)->stackb->value > (*all)->stacka->value)
+		else if ((*all)->stackb &&
+			(*all)->stackb->value < (*all)->stacka->next->value &&
+			(*all)->stackb->value > (*all)->stacka->value)
 		{
 			do_push(&(*all)->stacka, &(*all)->stackb);
 			do_swap(&(*all)->stacka);
-			ft_printf("pa\n");
-			ft_printf("sa\n");
+			ft_printf("pa\nsa\n");
 			(*all)->sizeb -= 1;
 			(*all)->sizea += 1;
 		}
-		else if (count && (*all)->stackb && (*all)->stackb->value < get_lastval((*all)->stacka))
-		{
-			do_rev_rotate(&(*all)->stacka);
-			ft_printf("rra\n");
-			count--;
-		}
-		else if ((*all)->stackb)
-		{
-			do_push(&(*all)->stacka, &(*all)->stackb);
-			ft_printf("pa\n");
-			(*all)->sizea += 1;
-			(*all)->sizeb -= 1;
-		}
-		else if (count)
-		{
-			do_rev_rotate(&(*all)->stacka);
-			ft_printf("rra\n");
-			count--;
-		}
+		else
+			count = pushback_extention(all, count);
+	}
+}
+
+void	push_swap_extended(t_all *all, int avalue, int aval_one, int avaln)
+{
+	if ((avalue > aval_one && aval_one > avaln) || avalue > avaln)
+	{
+		do_rev_rotate(&all->stacka);
+		ft_printf("rra\n");
+	}
+	else if (avalue > aval_one)
+	{
+		do_swap(&all->stacka);
+		ft_printf("sa\n");
+	}
+	else 
+	{
+		do_push(&all->stackb, &all->stacka);
+		all->sizea -= 1;
+		all->sizeb += 1;
+		ft_printf("pb\n");
+		sort_b(&all->stackb);
 	}
 }
 
@@ -142,24 +134,8 @@ void	push_swap(t_all *all)
 		avaln = get_lastval(all->stacka);
 		if (all->sizea <= 3)
 			three_sort(&all->stacka, 'a');
-		else if ((avalue > aval_one && aval_one > avaln) || avalue > avaln)
-		{
-			do_rev_rotate(&all->stacka);
-			ft_printf("rra\n");
-		}
-		else if (avalue > aval_one)
-		{
-			do_swap(&all->stacka);
-			ft_printf("sa\n");
-		}
-		else 
-		{
-			do_push(&all->stackb, &all->stacka);
-			all->sizea -= 1;
-			all->sizeb += 1;
-			ft_printf("pb\n");
-			sort_b(&all->stackb);
-		}
+		else
+			push_swap_extended(all, avalue, aval_one, avaln);
 		if (check_sorted(all->stacka))
 			start_pushback(&all);
 		sorted = check_sorted(all->stacka);

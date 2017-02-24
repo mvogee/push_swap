@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvogee <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/24 13:23:19 by mvogee            #+#    #+#             */
+/*   Updated: 2017/02/24 13:23:21 by mvogee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <limits.h> // is this alowed
+# include <limits.h>
 # include "ft_printf.h"
 # include "libft.h"
 
@@ -82,11 +94,17 @@ void				do_rev_rotate(t_stack **stack);
 ** experimental.c
 */
 void				three_sort(t_stack **stack, char c);
+int					pushback_extention(t_all **all, int count);
+void				start_pushback(t_all **all);
+void				push_swap_extended(t_all *all, int avalue,
+										int aval_one, int avaln);
+void				push_swap(t_all *all);
+/*
+** error.c
+*/
 int					check_sorted(t_stack *stack);
 int					get_lastval(t_stack *stack);
 void				sort_b(t_stack **stack);
-void				start_pushback(t_all **all);
-void				push_swap(t_all *all);
 /*
 ** error.c
 */

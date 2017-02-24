@@ -56,13 +56,16 @@ typedef struct		s_all
 /*
 ** main.c
 */
+
 void				check_sort(t_all *all);
 int					main(int ac, char **av); // this covers both progams
 void				check_duplicates(t_all *all);
 void				print_stacks(t_all *all);
+
 /*
 ** get_stack.c
 */
+
 int					get_size(char *str);
 t_stack				*add_end_node(t_stack *stacka, long value);
 void				get_string_stack(char *str, t_all *all);
@@ -72,6 +75,7 @@ void				get_list_stack(int ac, char **av, t_all *all);
 /*
 ** get_commands
 */
+
 int					translate_command(char *command);
 void				add_command(char *line, t_all *all);
 void				get_commands(t_all *all);
@@ -79,35 +83,44 @@ void				get_commands(t_all *all);
 /*
 ** execute_commands.c
 */
+
 void				extend_execute3(t_all *all, int count);
 void				extend_execute2(t_all *all, int count);
 void				extend_execute(t_all *all, int count);
 void				execute_commands(t_all *all);
+
 /*
 ** command execution functions
 */
+
 void				do_swap(t_stack **stack);
 void				do_push(t_stack **pushto, t_stack **pushfrom);
 void				do_rotate(t_stack **stack);
 void				do_rev_rotate(t_stack **stack);
+
 /*
 ** experimental.c
 */
+
 void				three_sort(t_stack **stack, char c);
 int					pushback_extention(t_all **all, int count);
 void				start_pushback(t_all **all);
 void				push_swap_extended(t_all *all, int avalue,
 										int aval_one, int avaln);
 void				push_swap(t_all *all);
+
 /*
-** error.c
+** extras.c
 */
+
 int					check_sorted(t_stack *stack);
 int					get_lastval(t_stack *stack);
 void				sort_b(t_stack **stack);
+
 /*
 ** error.c
 */
+
 void				free_list(t_stack *stack);
 void				throw_error_free(t_stack *stack);
 void				throw_error(void);

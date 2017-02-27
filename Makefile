@@ -55,11 +55,6 @@ $(CHECKER):
 
 $(PSWAP):
 	$(CC) $(CFLAGS) -o $(PSWAP) $(SRC2) $(SHAREDSRC) $(INCLUDE) $(LINK)
-
-clean_all: clean clean_libft clean_ftprintf
-
-clean:
-	/bin/rm -f $(OBJ1) $(OBJ2)
 	
 clean_libft:
 	@make -C libft clean
@@ -67,9 +62,10 @@ clean_libft:
 clean_ftprintf:
 	@make -C ft_printf clean
 
-fclean_all: fclean fclean_libft fclean_ftprintf
+clean: clean_libft clean_ftprintf
+	/bin/rm -f $(OBJ1) $(OBJ2)
 
-fclean: clean fclean_checker fclean_pswap
+fclean: clean fclean_checker fclean_pswap fclean_libft fclean_ftprintf
 
 fclean_checker: clean
 	/bin/rm -f $(CHECKER)
@@ -82,8 +78,6 @@ fclean_libft:
 
 fclean_ftprintf:
 	@make -C ft_printf fclean
-
-re_all: fclean_all all
 
 re: fclean $(CHECKER) $(PSWAP)
 

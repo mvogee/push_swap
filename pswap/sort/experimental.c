@@ -6,7 +6,7 @@
 /*   By: mvogee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 13:28:08 by mvogee            #+#    #+#             */
-/*   Updated: 2017/02/24 13:28:13 by mvogee           ###   ########.fr       */
+/*   Updated: 2017/02/27 15:01:57 by mvogee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	push_swap_extended(t_all *all, int avalue, int aval_one, int avaln)
 		do_swap(&all->stacka);
 		ft_printf("sa\n");
 	}
-	else 
+	else
 	{
 		do_push(&all->stackb, &all->stacka);
 		all->sizea -= 1;
@@ -120,10 +120,10 @@ void	push_swap_extended(t_all *all, int avalue, int aval_one, int avaln)
 void	push_swap(t_all *all)
 {
 	int			sorted;
-	int 		avalue;
-	int 		aval_one;
-	int 		avaln;
-	
+	int			avalue;
+	int			aval_one;
+	int			avaln;
+
 	if (all->sizea <= 3)
 		three_sort(&all->stacka, 'a');
 	sorted = check_sorted(all->stacka);

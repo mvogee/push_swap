@@ -6,7 +6,7 @@
 /*   By: mvogee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 13:16:18 by mvogee            #+#    #+#             */
-/*   Updated: 2017/02/24 13:16:28 by mvogee           ###   ########.fr       */
+/*   Updated: 2017/02/27 14:58:23 by mvogee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	get_commands(t_all *all)
 	char	*line;
 
 	line = NULL;
-	while (get_next_line(STDIN_FILENO, &line) > 0) // here
+	while (get_next_line(STDIN_FILENO, &line) > 0)
 	{
 		if (!line || ft_strequ(line, ""))
 			break ;

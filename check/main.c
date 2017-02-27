@@ -6,7 +6,7 @@
 /*   By: mvogee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 12:52:49 by mvogee            #+#    #+#             */
-/*   Updated: 2017/02/24 12:52:57 by mvogee           ###   ########.fr       */
+/*   Updated: 2017/02/27 14:57:42 by mvogee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void	check_duplicates(t_all *all)
 }
 
 /*
-** add these lines to bottom of main to easily see stack at the end of run and how many commands ran
+** add these lines to bottom of main to easily see stack at the end
+** of run and how many commands ran
 ** 	print_stacks(&all);
 **	ft_printf("commands run: %d\n", all.numcommands);
 */

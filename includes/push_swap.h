@@ -13,8 +13,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <unistd.h>
-# include <stdlib.h>
 # include <limits.h>
 # include "ft_printf.h"
 # include "libft.h"
@@ -58,7 +56,7 @@ typedef struct		s_all
 */
 
 void				check_sort(t_all *all);
-int					main(int ac, char **av); // this covers both progams
+int					main(int ac, char **av);
 void				check_duplicates(t_all *all);
 void				print_stacks(t_all *all);
 

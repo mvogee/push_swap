@@ -103,6 +103,8 @@ int		main(int ac, char **av)
 	get_commands(&all);
 	execute_commands(&all);
 	check_sort(&all);
+	print_stacks(&all);
+	ft_printf("\300commands run: %d\n", all.numcommands);
 	free_list(all.stacka);
 	if (all.commands)
 		free(all.commands);

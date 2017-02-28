@@ -136,8 +136,8 @@ void	push_swap(t_all *all)
 			three_sort(&all->stacka, 'a');
 		else
 			push_swap_extended(all, avalue, aval_one, avaln);
-		if (check_sorted(all->stacka))
-			start_pushback(&all);
+//		if (check_sorted(all->stacka))
+//			start_pushback(&all); // checking to see if this is where most of the inneficiency comes from
 		sorted = check_sorted(all->stacka);
 	}
 }

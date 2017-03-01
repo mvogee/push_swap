@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
+
 char		*extend_line(char *s1, char *s2, int bytes_read, int len)
 {
 	char			hold[len];
@@ -68,8 +68,9 @@ char		*read_entire_fd(int fd)
 
 t_gnllst	*new_fd(int fd, char *str, int job, t_gnllst *freeme)
 {
-	t_gnllst			*node;	
-	if (job == 1) // seg faults in here
+	t_gnllst			*node;
+
+	if (job == 1)
 	{
 		node = (t_gnllst*)malloc(sizeof(t_gnllst));
 		node->descriptor = fd;
@@ -116,11 +117,11 @@ int			get_next_line(const int fd, char **line)
 	t_gnllst		*head;
 	int				shift;
 	int				ret;
-	
+
 	if (fd < 0 || line == NULL)
 		return (-1);
 	if (!fd_lst)
-		fd_lst = new_fd(fd, read_entire_fd(fd), 1, NULL); // segfault here 
+		fd_lst = new_fd(fd, read_entire_fd(fd), 1, NULL);
 	head = fd_lst;
 	while (fd_lst->descriptor != fd)
 	{

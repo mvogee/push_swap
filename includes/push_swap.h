@@ -32,18 +32,25 @@ typedef enum		e_command
 	RRR = 11
 }					t_commands;
 
+typedef struct		s_moves
+{
+	int				total;
+	int				amoves; // in amoves positive is rot and negative is rev_rot.
+	int				bmoves; // in bmoves positive is rev_rot and positive is rot. // this being said when we translate these to commands we could flip values
+}					t_moves;
+
 typedef struct		s_stack
 {
 	int				value;
 	struct s_stack	*next;
 	struct s_stack	*prev;
-
 }					t_stack;
 
 typedef struct		s_all
 {
 	t_stack			*stacka;
 	t_stack			*stackb;
+	t_moves			moves;
 	int				size;
 	int				sizea;
 	int				sizeb;

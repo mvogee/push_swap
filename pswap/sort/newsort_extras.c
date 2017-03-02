@@ -12,6 +12,22 @@
 
 #include "push_swap.h"
 
+t_stack	*duplicate_stack(t_stack *stack) // in progress
+{
+	t_stack		*duplicate;
+	t_stack		*duphead;
+
+	if (!stack)
+		return (NULL);
+	duplicate = (t_stack*)ft_memccpy(duplicate, stack, sizeof(t_stack));
+	duphead = duplicate;
+	stack = stack->next;
+	while (stack)
+	{
+		duplicate->next = (t_stack*)ft_memccpy(duplicate, stack, sizeof(t_stack));
+	}
+}
+
 int		get_lastval(t_stack *stack)
 {
 	t_stack		*tmp;

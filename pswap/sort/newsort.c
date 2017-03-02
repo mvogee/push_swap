@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int		arot_to_top(t_stack *stacka)
+int		arot_to_top(t_stack *stacka) //done needs testing
 {
 	int			count;
 	t_stack		*tmp;
@@ -27,7 +27,7 @@ int		arot_to_top(t_stack *stacka)
 	return (count);
 }
 
-int		arev_to_top(t_stack *stacka)
+int		arev_to_top(t_stack *stacka) //done needs testing
 {
 	int			count;
 	t_stack		*tmp;
@@ -39,26 +39,10 @@ int		arev_to_top(t_stack *stacka)
 		count--;
 		tmp = tmp->next;
 	}
-	return (count - 1);
+	return (count - 1); // minus one because it takes one more action to put it at the top
 }
 
-int		brot_to_sort(t_stack *stackb, int value, int curlow, int curhigh) // unfinished
-{
-	int			count;
-	t_stack		*tmp;
-
-	count = 0;
-	tmp = stackb;
-	if (!stackb)
-		return (0);
-	if (!stackb->next)
-	{
-
-	}
-	while(tmp->next)
-}
-
-int		brev_to_sort(t_stack *stackb, int value, int curlow, int curhigh)
+int		brot_to_sort(t_stack *stackb, int value, int curlow, int curhigh) //done needs testing and duplicate_stack function
 {
 	int			count;
 	t_stack		*tmp;
@@ -66,8 +50,37 @@ int		brev_to_sort(t_stack *stackb, int value, int curlow, int curhigh)
 	count = 0;
 	if (!stackb)
 		return (0);
-	tmp = dublicate_stack(stackb); // make duplicate function
+	tmp = dublicate_stack(stackb);
 	if (value > curhigh || value < curlow)
+	{
+		while (tmp->value != curhigh)
+		{
+			do_rotate(&tmp);
+			count++;
+		}
+	}
+	else
+	{
+		while (!(value > tmp->value && value < get_lastval(tmp)))
+		{
+			do_rotate(&tmp);
+			count++;
+		}
+	}
+	free_list(tmp);
+	return (count);
+}
+
+int		brev_to_sort(t_stack *stackb, int value, int curlow, int curhigh) //done needs testing and duplicate_stack funciton
+{
+	int			count;
+	t_stack		*tmp;
+
+	count = 0;
+	if (!stackb) // if b is empty or does not exist
+		return (0);
+	tmp = dublicate_stack(stackb); // make this duplicate function
+	if (value > curhigh || value < curlow) // if there is only 1 node this will alwasy be triggered
 	{
 		while(tmp->value != curhigh)
 		{
@@ -77,7 +90,7 @@ int		brev_to_sort(t_stack *stackb, int value, int curlow, int curhigh)
 	}
 	else
 	{
-		while (!(value > tmp->value && value < get_lastval(tmp)))
+		while (!(value > tmp->value && value < get_lastval(tmp))) // this will alwasy work as long as there is 2 or more values in the list
 		{
 			do_rev_rotate(&tmp);
 			count--;

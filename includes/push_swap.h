@@ -39,6 +39,14 @@ typedef struct		s_moves
 	int				bmoves; // in bmoves positive is rev_rot and positive is rot. // this being said when we translate these to commands we could flip values
 }					t_moves;
 
+typedef struct		s_counts
+{
+	int		arot;
+	int		arev;
+	int		brot;
+	int		brev;
+}					t_counts;
+
 typedef struct		s_stack
 {
 	int				value;
@@ -56,6 +64,8 @@ typedef struct		s_all
 	int				sizeb;
 	int				*commands;
 	int				numcommands;
+	int				b_curhigh;
+	int				b_curlow;
 }					t_all;
 
 /*
@@ -107,11 +117,22 @@ void				do_rev_rotate(t_stack **stack);
 ** experimental.c
 */
 
-void				three_sort(t_stack **stack, char c);
-int					pushback_extention(t_all **all, int count);
-void				start_pushback(t_all **all);
-void				push_swap_extended(t_all *all, int avalue,
-										int aval_one, int avaln);
+// void				three_sort(t_stack **stack, char c);
+// int					pushback_extention(t_all **all, int count);
+// void				start_pushback(t_all **all);
+// void				push_swap_extended(t_all *all, int avalue,
+// 										int aval_one, int avaln);
+// void				push_swap(t_all *all);
+
+/*
+** newsort.c
+*/
+
+int					arot_to_top(t_stack *stacka);
+int					arev_to_top(t_stack *stacka);
+int					brot_to_sort(t_stack *stackb, int value, int curlow, int curhigh);
+int					brev_to_sort(t_stack *stackb, int value, int curlow, int curhigh);
+void				get_min_moves(t_all *all, t_stack *stacka, t_stack *stackb);
 void				push_swap(t_all *all);
 
 /*

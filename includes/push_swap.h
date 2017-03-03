@@ -132,16 +132,26 @@ int					arot_to_top(t_stack *stacka);
 int					arev_to_top(t_stack *stacka);
 int					brot_to_sort(t_stack *stackb, int value, int curlow, int curhigh);
 int					brev_to_sort(t_stack *stackb, int value, int curlow, int curhigh);
+void				set_moves(t_all *all, int total, int amove, int bmove);
+void				fastest_combo(t_all *all, t_counts *counts);
 void				get_min_moves(t_all *all, t_stack *stacka, t_stack *stackb);
 void				push_swap(t_all *all);
+
+/*
+** newsort_extras.c
+*/
+
+t_stack				*duplicate_stack(t_stack *stack);
+int					get_lastval(t_stack *stack);
+int					check_sorted(t_stack *stack);
 
 /*
 ** extras.c
 */
 
-int					check_sorted(t_stack *stack);
-int					get_lastval(t_stack *stack);
-void				sort_b(t_stack **stack);
+// int					check_sorted(t_stack *stack);
+// int					get_lastval(t_stack *stack);
+// void				sort_b(t_stack **stack);
 
 /*
 ** error.c

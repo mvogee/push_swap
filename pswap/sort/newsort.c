@@ -155,24 +155,65 @@ void	get_min_moves(t_all *all, t_stack *stacka, t_stack *stackb)
 
 void	execute_moves(t_all *all, int amoves, int bmoves)
 {
-	while (amoves > 0 || bmoves > 0)
+	while (amoves > 0 || bmoves > 0 || amoves < 0 || bmoves < 0)
 	{
 		if (amoves < 0 && bmoves < 0)
 		{
-			//do rrr until one of them is 0
-			// then continue opperations on the stack that still has opperations
+			amoves++;
+			bmoves++;
+			do_rev_rotate(&all->stacka);
+			do_rev_rotate(&all->stackb);
+			ft_printf("rrr\n");
 		}
 		else if (amoves > 0 && bmoves > 0)
 		{
-			// we can use rr until one is 0
-			// then continue opperations on the one that still has moves left
+			amoves--;
+			bmoves--;
+			do_rotate(&all->stacka);
+			do_rotate(&all->stackb);
+			ft_printf("rr\n");
 		}
-		else
+		else // basically break this entire thing into two funcitons
 		{
 			// we have opposite opperations or one is at 0 and need to run them seperately
+			if (amoves != 0)
+			{
+				if (amoves > 0)
+				{
+					amoves--;
+					do_rotate(&all->stacka);
+					ft_printf("ra\n");
+				}
+				else
+				{
+					amoves++;
+					do_rev_rotate(&all->stacka);
+					ft_printf("rra\n");
+				}
+			}
+			if (bmoves != 0)
+			{
+				if (bmoves > 0)
+				{
+					bmoves--;
+					do_rotate(&all->stackb);
+					ft_printf("rb\n");
+				}
+				else
+				{
+					bmoves++;
+					do_rev_rotate(&all->stackb);
+					ft_printf("rrb\n");
+				}
+			}
 		}
 	}
-	// once we are out of rotations we can check if the stack value is smaller or greater than the curlow or curhigh
+	if (all->stacka->value > all->b_curhigh)
+		all->b_curhigh = all->stacka->value;
+	else if (all->stacka->value < all->b_curlow)
+		all->b_curlow = all->stacka->value;
+	do_push(all->stackb, all->stacka);
+	ft_printf("pb\n");
 }
 
 void	push_swap(t_all *all)
@@ -185,7 +226,8 @@ void	push_swap(t_all *all)
 		get_min_moves(all, all->stacka, all->stackb); //this will get the data about what the smallest number of moves is for a sorted B and add the info to all->moves.
 		execute_moves(all, all->moves->amoves, all->moves->bmoves); //make this. translates, executes, updates b_curhigh or b_curlow if needed
 	}
-	move_b_to_order(all->stackb); //make this. rotates b until the highest number is at the front. which is first value > last value
-	push_back(all); // make this. // until b is empty push numbers back to a making sure to keep it in order
-	if (!check_sorted(all->stacka))
+	// TEST NOW STUPID!
+//	move_b_to_order(all->stackb); //make this. rotates b until the highest number is at the front. which is first value > last value
+//	push_back(all); // make this. // until b is empty push numbers back to a making sure to keep it in order
+//	if (!check_sorted(all->stacka))
 }

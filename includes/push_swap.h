@@ -132,7 +132,7 @@ int					arot_to_top(t_stack *stacka);
 int					arev_to_top(t_stack *stacka);
 int					brot_to_sort(t_stack *stackb, int value, int curlow, int curhigh);
 int					brev_to_sort(t_stack *stackb, int value, int curlow, int curhigh);
-void				set_moves(t_all *all, int total, int amove, int bmove);
+void				set_moves(t_all **all, int total, int amove, int bmove);
 void				fastest_combo(t_all *all, t_counts *counts);
 void				get_min_moves(t_all *all, t_stack *stacka, t_stack *stackb);
 void				execute_moves(t_all *all, int amoves, int bmoves);

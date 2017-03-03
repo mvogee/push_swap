@@ -9,9 +9,8 @@ SRC1 =	./check/main.c \
 
 #push_swap
 SRC2 =	./pswap/main.c \
-		./pswap/sort/extras.c \
-		./pswap/sort/experimental.c \
-		#./pswap/sort/newsort.c
+		./pswap/sort/newsort_extras.c \
+		./pswap/sort/newsort.c \
 
 #commands
 SHAREDSRC =	get_stack.c \

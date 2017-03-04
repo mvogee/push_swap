@@ -70,6 +70,8 @@ int		main(int ac, char **av)
 		get_list_stack(ac, av, &all);
 	all.sizea = all.size;
 	all.commands = NULL;
+	all.b_curlow = INT_MAX;
+	all.b_curhigh = INT_MIN;
 	check_duplicates(&all);
 	push_swap(&all);
 	free_list(all.stacka);

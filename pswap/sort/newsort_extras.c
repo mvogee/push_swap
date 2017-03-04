@@ -21,12 +21,14 @@ t_stack	*duplicate_stack(t_stack *stack)
 	if (!stack)
 		return (NULL);
 	duplicate = NULL;
+	duplicate = (t_stack*)ft_memalloc(sizeof(t_stack));
 	duplicate = (t_stack*)ft_memcpy(duplicate, stack, sizeof(t_stack));
 	duphead = duplicate;
 	prev = duplicate;
 	stack = stack->next;
 	while (stack)
 	{
+		duplicate->next = (t_stack*)ft_memalloc(sizeof(t_stack));
 		duplicate->next = (t_stack*)ft_memcpy(duplicate, stack, sizeof(t_stack));
 		duplicate->prev = prev;
 		prev = duplicate;

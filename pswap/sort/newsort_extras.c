@@ -86,5 +86,17 @@ void	move_b_to_order(t_all *all)
 			do_rotate(&all->stackb);
 		else
 			do_rev_rotate(&all->stackb);
+		(flag == 1 ? ft_printf("rb\n") : ft_printf("rrb\n"));
+	}
+}
+
+void	push_back(t_all *all)
+{
+	while (all->sizeb > 0)
+	{
+		do_push(&all->stacka, &all->stackb);
+		all->sizea++;
+		all->sizeb--;
+		ft_printf("pa\n");
 	}
 }

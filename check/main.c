@@ -103,8 +103,6 @@ int		main(int ac, char **av)
 	get_commands(&all);
 	execute_commands(&all);
 	check_sort(&all);
-	print_stacks(&all);
-	ft_printf("%scommands run: %d\n", "\x1B[31m",  all.numcommands); // hoping this prints in color
 	free_list(all.stacka);
 	if (all.commands)
 		free(all.commands);

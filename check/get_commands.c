@@ -55,8 +55,6 @@ void	add_command(char *line, t_all *all)
 		count++;
 	}
 	tmp[count] = translate_command(line);
-	if (!tmp[count]) // this is testing to see if this will terminate our program for us when an invalid is given.
-		throw_error(); // this did nothing. we will have to come back to this
 	count = 0;
 	free(all->commands);
 	all->commands = (int*)ft_memalloc(sizeof(int) * all->numcommands);

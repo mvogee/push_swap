@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mvogee <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/03/07 12:44:50 by mvogee            #+#    #+#              #
+#    Updated: 2017/03/07 12:44:54 by mvogee           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CHECKER = checker
 
 PSWAP = push_swap
@@ -10,7 +22,11 @@ SRC1 =	./check/main.c \
 #push_swap
 SRC2 =	./pswap/main.c \
 		./pswap/sort/newsort_extras.c \
-		./pswap/sort/newsort.c \
+		./pswap/sort/main_sort.c \
+		./pswap/sort/alternative_sort.c \
+		./pswap/sort/move_calculation.c \
+		./pswap/sort/execute_moves.c \
+		./pswap/sort/extras.c \
 
 #commands
 SHAREDSRC =	get_stack.c \
@@ -32,11 +48,14 @@ INCLUDE = -I./libft \
 			
 LINK = ./ft_printf/libftprintf.a \
 		./libft/libft.a \
- #need to make these
 
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
+
+.PHONY: all clean fclean re checker pswap makelibft makeprintf clean_ftprintf \
+	clean_libft fclean_checker fclean_pswap fclean_libft fclean_ftprintf \
+	re_pswap re_checker
 
 all: makeprintf makelibft $(CHECKER) $(PSWAP)
 

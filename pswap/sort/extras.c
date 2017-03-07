@@ -12,30 +12,6 @@
 
 #include "push_swap.h"
 
-int		check_sorted(t_stack *stack)
-{
-	t_stack		*cpy;
-
-	cpy = stack;
-	while (cpy->next)
-	{
-		if (cpy->value > cpy->next->value)
-			return (0);
-		cpy = cpy->next;
-	}
-	return (1);
-}
-
-int		get_lastval(t_stack *stack)
-{
-	t_stack		*tmp;
-
-	tmp = stack;
-	while (tmp->next)
-		tmp = tmp->next;
-	return (tmp->value);
-}
-
 void	sort_b(t_stack **stack)
 {
 	int			sorted;

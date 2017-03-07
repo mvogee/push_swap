@@ -69,11 +69,13 @@ int		main(int ac, char **av)
 	else
 		get_list_stack(ac, av, &all);
 	all.sizea = all.size;
-	all.commands = NULL;
 	all.b_curlow = INT_MAX;
 	all.b_curhigh = INT_MIN;
 	check_duplicates(&all);
-	push_swap(&all);
+	if (all.size >= 15)
+		push_swap(&all);
+	else
+		alternative_sort(&all);
 	free_list(all.stacka);
 	return (0);
 }

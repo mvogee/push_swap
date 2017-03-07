@@ -14,7 +14,7 @@
 
 void	extend_execute3(t_all *all, int command)
 {
-	if (command== RRB)
+	if (command == RRB)
 	{
 		if (all->sizeb > 1)
 			do_rev_rotate(&all->stackb);
@@ -89,7 +89,6 @@ void	extend_execute(t_all *all, int command)
 
 void	execute_commands(t_all *all, int command)
 {
-
 	if (command == SA)
 	{
 		if (all->sizea > 1)

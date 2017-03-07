@@ -35,8 +35,8 @@ typedef enum		e_command
 typedef struct		s_moves
 {
 	int				total;
-	int				amoves; // in amoves positive is rot and negative is rev_rot.
-	int				bmoves; // in bmoves positive is rev_rot and positive is rot. // this being said when we translate these to commands we could flip values
+	int				amoves;
+	int				bmoves;
 }					t_moves;
 
 typedef struct		s_counts
@@ -62,7 +62,6 @@ typedef struct		s_all
 	int				size;
 	int				sizea;
 	int				sizeb;
-	// int				*commands;
 	int				numcommands;
 	int				b_curhigh;
 	int				b_curlow;
@@ -92,7 +91,6 @@ void				get_list_stack(int ac, char **av, t_all *all);
 */
 
 int					translate_command(char *command);
-//void				add_command(char *line, t_all *all);
 void				get_commands(t_all *all);
 
 /*
@@ -114,29 +112,44 @@ void				do_rotate(t_stack **stack);
 void				do_rev_rotate(t_stack **stack);
 
 /*
-** experimental.c
+** alternative_sort.c
 */
 
-// void				three_sort(t_stack **stack, char c);
-// int					pushback_extention(t_all **all, int count);
-// void				start_pushback(t_all **all);
-// void				push_swap_extended(t_all *all, int avalue,
-// 										int aval_one, int avaln);
-// void				push_swap(t_all *all);
+void				three_sort(t_stack **stack, char c);
+int					pushback_extention(t_all **all, int count);
+void				start_pushback(t_all **all);
+void				push_swap_extended(t_all *all, int avalue,
+										int aval_one, int avaln);
+void				alternative_sort(t_all *all);
 
 /*
-** newsort.c
+** main_sort.c
+*/
+
+void				set_moves(t_all **all, int total, int amove, int bmove);
+void				fastest_combo(t_all *all, t_counts *counts);
+void				get_min_moves(t_all *all, t_stack *stacka, t_stack *stackb);
+void				push_swap(t_all *all);
+
+/*
+** execute_moves.c
+*/
+
+void				tandom_run(t_all *all, int *amoves, int *bmoves);
+void				a_moves(t_all *all, int *amoves);
+void				b_moves(t_all *all, int *bmoves);
+void				execute_moves(t_all *all, int amoves, int bmoves);
+
+/*
+** move_calculaton.c
 */
 
 int					arot_to_top(t_stack *stacka);
 int					arev_to_top(t_stack *stacka);
-int					brot_to_sort(t_stack *stackb, int value, int curlow, int curhigh);
-int					brev_to_sort(t_stack *stackb, int value, int curlow, int curhigh);
-void				set_moves(t_all **all, int total, int amove, int bmove);
-void				fastest_combo(t_all *all, t_counts *counts);
-void				get_min_moves(t_all *all, t_stack *stacka, t_stack *stackb);
-void				execute_moves(t_all *all, int amoves, int bmoves);
-void				push_swap(t_all *all);
+int					brot_to_sort(t_stack *stackb, int value,
+									int curlow, int curhigh);
+int					brev_to_sort(t_stack *stackb, int value,
+									int curlow, int curhigh);
 
 /*
 ** newsort_extras.c
@@ -152,9 +165,7 @@ void				push_back(t_all *all);
 ** extras.c
 */
 
-// int					check_sorted(t_stack *stack);
-// int					get_lastval(t_stack *stack);
-// void				sort_b(t_stack **stack);
+void				sort_b(t_stack **stack);
 
 /*
 ** error.c

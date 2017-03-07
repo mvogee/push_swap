@@ -63,3 +63,28 @@ int		check_sorted(t_stack *stack)
 	}
 	return (1);
 }
+
+void	move_b_to_order(t_all *all)
+{
+	int			count;
+	int			flag;
+	t_stack		*tmp;
+
+	tmp = all->stackb;
+	flag = 0;
+	count = 0;
+	while (tmp->value != all->b_curhigh)
+	{
+		tmp = tmp->next;
+		count++;
+	}
+	if (count <= (all->sizeb / 2))
+		flag = 1;
+	while (all->stackb->value != all->b_curhigh)
+	{
+		if (flag)
+			do_rotate(&all->stackb);
+		else
+			do_rev_rotate(&all->stackb);
+	}
+}

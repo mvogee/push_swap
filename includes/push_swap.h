@@ -145,6 +145,7 @@ void				push_swap(t_all *all);
 t_stack				*duplicate_stack(t_stack *stack);
 int					get_lastval(t_stack *stack);
 int					check_sorted(t_stack *stack);
+void				move_b_to_order(t_all *all);
 
 /*
 ** extras.c

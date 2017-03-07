@@ -214,13 +214,14 @@ void	execute_moves(t_all *all, int amoves, int bmoves)
 	ft_printf("			pushing: %d\n", all->stacka->value);
 	do_push(&all->stackb, &all->stacka);
 	ft_printf("pb\n");
+	ft_printf("sizea%d\n", all->sizea);
 	ft_printf("curlow: %d\n", all->b_curlow);
 	ft_printf("curhgih: %d\n", all->b_curhigh);
 }
 
 void	push_swap(t_all *all)
 {
-	while (!check_sorted(all->stacka))
+	while (all->sizea > 0) //!check_sorted(all->stacka) options to sort everything into b or only untill remaining numbers in a are sorted
 	{
 		print_stacks(all);
 		all->moves.bmoves = INT_MAX;
@@ -230,10 +231,13 @@ void	push_swap(t_all *all)
 		ft_printf("amoves: %d\n", all->moves.amoves); // these are always coming out as 0
 		ft_printf("bmoves: %d\n", all->moves.bmoves);
 		execute_moves(all, all->moves.amoves, all->moves.bmoves); // translates, executes, updates b_curhigh or b_curlow if needed
+		all->sizea--;
+		all->sizeb++;
 		print_stacks(all);
 		ft_printf("\n");
 	}
-//	move_b_to_order(all->stackb); //make this. rotates b until the highest number is at the front. which is first value > last value
+	move_b_to_order(all); //make this. rotates b until the highest number is at the front. which is first value > last value
+	print_stacks(all);
 //	push_back(all); // make this. // until b is empty push numbers back to a making sure to keep it in order
 //	if (!check_sorted(all->stacka))
 }

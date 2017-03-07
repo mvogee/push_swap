@@ -14,29 +14,30 @@
 
 t_stack	*duplicate_stack(t_stack *stack)
 {
-	t_stack		*duplicate;
-	t_stack		*prev;
-	t_stack		*duphead;
+	t_stack			*tmp;
+	t_stack			*dup;
+	t_stack			*duphead;
+	t_stack			*prev;
 
-	if (!stack)
-		return (NULL);
-	duplicate = NULL;
-	duplicate = (t_stack*)ft_memalloc(sizeof(t_stack));
-	duplicate = (t_stack*)ft_memcpy(duplicate, stack, sizeof(t_stack));
-	duphead = duplicate;
-	prev = duplicate;
-	stack = stack->next;
-	while (stack)
+	tmp = stack;
+	prev = NULL;
+	dup = NULL;
+	duphead = NULL;
+	while (tmp)
 	{
-		duplicate->next = (t_stack*)ft_memalloc(sizeof(t_stack));
-		duplicate->next = (t_stack*)ft_memcpy(duplicate, stack, sizeof(t_stack));
-		duplicate->prev = prev;
-		prev = duplicate;
-		stack = stack->next;
-		duplicate = duplicate->next;
+		dup = (t_stack*)ft_memalloc(sizeof(t_stack));
+		dup->prev = prev;
+		dup->next = NULL;
+		dup->value = tmp->value;
+		if (dup->prev)
+			dup->prev->next = dup;
+		prev = dup;
+		if (!duphead)
+			duphead = dup;
+		tmp = tmp->next;
 	}
-	duplicate = duphead;
-	return (duplicate);
+	dup = duphead;
+	return (dup);
 }
 
 int		get_lastval(t_stack *stack)

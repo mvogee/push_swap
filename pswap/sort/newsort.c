@@ -44,7 +44,7 @@ int		arev_to_top(t_stack *stacka) //done needs testing
 	return (count - 1); // minus one because it takes one more action to put it at the top
 }
 
-int		brot_to_sort(t_stack *stackb, int value, int curlow, int curhigh) //always returning 0
+int		brot_to_sort(t_stack *stackb, int value, int curlow, int curhigh)
 {
 	int			count;
 	t_stack		*tmp;
@@ -54,10 +54,10 @@ int		brot_to_sort(t_stack *stackb, int value, int curlow, int curhigh) //always 
 		return (0);
 	ft_printf("a\n");
 	tmp = duplicate_stack(stackb);
-//	ft_printf("b\n");
+	ft_printf("b\n");
 	if (value > curhigh || value < curlow)
 	{
-//		ft_printf("c\n");
+		ft_printf("c\n");
 		while (tmp->value != curhigh)
 		{
 			do_rotate(&tmp);
@@ -66,15 +66,15 @@ int		brot_to_sort(t_stack *stackb, int value, int curlow, int curhigh) //always 
 	}
 	else
 	{
-//		ft_printf("d\n");
+		ft_printf("d\n");
 		while (!(value > tmp->value && value < get_lastval(tmp)))
 		{
 			do_rotate(&tmp);
-//			ft_printf("12\n");
+			ft_printf("12\n");
 			count++;
 		}
 	}
-//	ft_printf("f\n");
+	ft_printf("f\n");
 	//free_list(tmp);
 	ft_printf("brot_to_sort: %d\n", count);
 	return (count);
@@ -163,11 +163,14 @@ void	get_min_moves(t_all *all, t_stack *stacka, t_stack *stackb)
 		counts.arot = arot_to_top(tmpa); // counts positive
 //		ft_printf("AA\n");
 		counts.arev = arev_to_top(tmpa); // counts negative
-//		ft_printf("AB\n");
+		ft_printf("AB\n");
+		print_stacks(all);
 		counts.brot = brot_to_sort(stackb, tmpa->value, all->b_curlow, all->b_curhigh); // counts positive // segfault
-//		ft_printf("AC\n");
+		print_stacks(all);
+		ft_printf("AC\n");
 		counts.brev = brev_to_sort(stackb, tmpa->value, all->b_curlow, all->b_curhigh); // counts negative
-//		ft_printf("B\n");
+		ft_printf("B\n");
+		print_stacks(all);
 		tmpa = tmpa->next;
 		fastest_combo(all, &counts); //will find the fastest combo of opperations and determine if it beats the current fastest op
 //		ft_printf("C\n");
@@ -239,7 +242,7 @@ void	execute_moves(t_all *all, int amoves, int bmoves)
 		all->b_curhigh = all->stacka->value;
 	if (all->stacka->value < all->b_curlow)
 		all->b_curlow = all->stacka->value;
-	ft_printf("pushing: %d\n", all->stacka->value);
+	ft_printf("			pushing: %d\n", all->stacka->value);
 	do_push(&all->stackb, &all->stacka);
 	ft_printf("pb\n");
 	ft_printf("curlow: %d\n", all->b_curlow);

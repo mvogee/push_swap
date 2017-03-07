@@ -68,16 +68,19 @@ void	get_min_moves(t_all *all, t_stack *stacka, t_stack *stackb)
 
 void	push_swap(t_all *all)
 {
-	while (all->sizea > 0)
+	if (!check_sorted(all->stacka))
 	{
-		all->moves.bmoves = INT_MAX;
-		all->moves.amoves = INT_MAX;
-		all->moves.total = INT_MAX;
-		get_min_moves(all, all->stacka, all->stackb);
-		execute_moves(all, all->moves.amoves, all->moves.bmoves);
-		all->sizea--;
-		all->sizeb++;
+		while (all->sizea > 0)
+		{
+			all->moves.bmoves = INT_MAX;
+			all->moves.amoves = INT_MAX;
+			all->moves.total = INT_MAX;
+			get_min_moves(all, all->stacka, all->stackb);
+			execute_moves(all, all->moves.amoves, all->moves.bmoves);
+			all->sizea--;
+			all->sizeb++;
+		}
+		move_b_to_order(all);
+		push_back(all);
 	}
-	move_b_to_order(all);
-	push_back(all);
 }

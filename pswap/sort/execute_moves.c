@@ -14,18 +14,18 @@
 
 void	tandom_run(t_all *all, int *amoves, int *bmoves)
 {
-	if (amoves < 0 && bmoves < 0)
+	if (*amoves < 0 && *bmoves < 0)
 	{
-		amoves++;
-		bmoves++;
+		*amoves += 1;
+		*bmoves += 1;
 		do_rev_rotate(&all->stacka);
 		do_rev_rotate(&all->stackb);
 		ft_printf("rrr\n");
 	}
-	else if (amoves > 0 && bmoves > 0)
+	else if (*amoves > 0 && *bmoves > 0)
 	{
-		amoves--;
-		bmoves--;
+		*amoves -= 1;
+		*bmoves -= 1;
 		do_rotate(&all->stacka);
 		do_rotate(&all->stackb);
 		ft_printf("rr\n");
@@ -34,15 +34,15 @@ void	tandom_run(t_all *all, int *amoves, int *bmoves)
 
 void	a_moves(t_all *all, int *amoves)
 {
-	if (amoves > 0)
+	if (*amoves > 0)
 	{
-		amoves--;
+		*amoves -= 1;
 		do_rotate(&all->stacka);
 		ft_printf("ra\n");
 	}
-	else
+	else if (*amoves < 0)
 	{
-		amoves++;
+		*amoves += 1;
 		do_rev_rotate(&all->stacka);
 		ft_printf("rra\n");
 	}
@@ -50,15 +50,15 @@ void	a_moves(t_all *all, int *amoves)
 
 void	b_moves(t_all *all, int *bmoves)
 {
-	if (bmoves > 0)
+	if (*bmoves > 0)
 	{
-		bmoves--;
+		*bmoves -= 1;
 		do_rotate(&all->stackb);
 		ft_printf("rb\n");
 	}
 	else
 	{
-		bmoves++;
+		*bmoves += 1;
 		do_rev_rotate(&all->stackb);
 		ft_printf("rrb\n");
 	}

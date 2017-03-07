@@ -26,12 +26,12 @@ void	check_sort(t_all *all)
 	{
 		if (tmp->value > tmp->next->value)
 		{
-			ft_printf("KO\n");
+			ft_printf("\e[31mKO\n");
 			return ;
 		}
 		tmp = tmp->next;
 	}
-	ft_printf("OK\n");
+	ft_printf("\e[32mOK\n");
 }
 
 void	print_stacks(t_all *all)
@@ -83,7 +83,7 @@ void	check_duplicates(t_all *all)
 ** add these lines to bottom of main to easily see stack at the end
 ** of run and how many commands ran
 ** 	print_stacks(&all);
-**	ft_printf("commands run: %d\n", all.numcommands);
+**	ft_printf("\e[32mcommands run: %d\n", all.numcommands);
 */
 
 int		main(int ac, char **av)
@@ -103,8 +103,6 @@ int		main(int ac, char **av)
 	check_duplicates(&all);
 	get_commands(&all);
 	check_sort(&all);
-	print_stacks(&all);
-	ft_printf("commands run: %d\n", all.numcommands);
 	free_list(all.stacka);
 	if (all.stackb)
 		free_list(all.stackb);

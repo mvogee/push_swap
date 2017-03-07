@@ -38,26 +38,20 @@ void	print_stacks(t_all *all)
 {
 	t_stack *a;
 	t_stack *b;
-	int		bsize;
-	int		asize;
 
 	a = all->stacka;
 	b = all->stackb;
-	asize = all->sizea;
-	bsize = all->sizeb;
 	ft_printf("B| ");
-	while (b && bsize > 0)
+	while (b)
 	{
 		ft_printf("%d ", b->value);
 		b = b->next;
-		bsize--;
 	}
 	ft_printf("\nA| ");
-	while (a && asize > 0)
+	while (a)
 	{
 		ft_printf("%d ", a->value);
 		a = a->next;
-		asize--;
 	}
 	ft_printf("\n");
 }
@@ -96,6 +90,7 @@ int		main(int ac, char **av)
 {
 	t_all	all;
 
+	ft_bzero(&all, sizeof(t_all));
 	if (ac < 2)
 		return (0);
 	if (ac == 2)
@@ -111,5 +106,7 @@ int		main(int ac, char **av)
 	print_stacks(&all);
 	ft_printf("commands run: %d\n", all.numcommands);
 	free_list(all.stacka);
+	if (all.stackb)
+		free_list(all.stackb);
 	return (0);
 }

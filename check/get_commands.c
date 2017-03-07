@@ -48,6 +48,7 @@ void	get_commands(t_all *all)
 	line = NULL;
 	while (get_next_line(STDIN_FILENO, &line) > 0)
 	{
+		all->numcommands++;
 		if (!line || ft_strequ(line, ""))
 			break ;
 		else

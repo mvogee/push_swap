@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-void	extend_execute3(t_all *all, int count)
+void	extend_execute3(t_all *all, int command)
 {
-	if (all->commands[count] == RRB)
+	if (command== RRB)
 	{
 		if (all->sizeb > 1)
 			do_rev_rotate(&all->stackb);
 	}
-	else if (all->commands[count] == RRR)
+	else if (command == RRR)
 	{
 		if (all->sizea > 1)
 			do_rev_rotate(&all->stacka);
@@ -30,44 +30,44 @@ void	extend_execute3(t_all *all, int count)
 		throw_error_free(all->stacka);
 }
 
-void	extend_execute2(t_all *all, int count)
+void	extend_execute2(t_all *all, int command)
 {
-	if (all->commands[count] == RA)
+	if (command == RA)
 	{
 		if (all->sizea > 1)
 			do_rotate(&all->stacka);
 	}
-	else if (all->commands[count] == RB)
+	else if (command == RB)
 	{
 		if (all->sizeb > 1)
 			do_rotate(&all->stackb);
 	}
-	else if (all->commands[count] == RR)
+	else if (command == RR)
 	{
 		if (all->sizea > 1)
 			do_rotate(&all->stacka);
 		if (all->sizeb > 1)
 			do_rotate(&all->stackb);
 	}
-	else if (all->commands[count] == RRA)
+	else if (command == RRA)
 	{
 		if (all->sizea > 1)
 			do_rev_rotate(&all->stacka);
 	}
 	else
-		extend_execute3(all, count);
+		extend_execute3(all, command);
 }
 
-void	extend_execute(t_all *all, int count)
+void	extend_execute(t_all *all, int command)
 {
-	if (all->commands[count] == SS)
+	if (command == SS)
 	{
 		if (all->sizea > 1)
 			do_swap(&all->stacka);
 		if (all->sizeb > 1)
 			do_swap(&all->stackb);
 	}
-	else if (all->commands[count] == PA)
+	else if (command == PA)
 	{
 		if (all->sizeb < 1)
 			return ;
@@ -75,7 +75,7 @@ void	extend_execute(t_all *all, int count)
 		all->sizeb -= 1;
 		all->sizea += 1;
 	}
-	else if (all->commands[count] == PB)
+	else if (command == PB)
 	{
 		if (all->sizea < 1)
 			return ;
@@ -84,28 +84,22 @@ void	extend_execute(t_all *all, int count)
 		all->sizeb += 1;
 	}
 	else
-		extend_execute2(all, count);
+		extend_execute2(all, command);
 }
 
-void	execute_commands(t_all *all)
+void	execute_commands(t_all *all, int command)
 {
-	int		count;
 
-	count = 0;
-	while (count < all->numcommands)
+	if (command == SA)
 	{
-		if (all->commands[count] == SA)
-		{
-			if (all->sizea > 1)
-				do_swap(&all->stacka);
-		}
-		else if (all->commands[count] == SB)
-		{
-			if (all->sizeb > 1)
-				do_swap(&all->stackb);
-		}
-		else
-			extend_execute(all, count);
-		count++;
+		if (all->sizea > 1)
+			do_swap(&all->stacka);
 	}
+	else if (command == SB)
+	{
+		if (all->sizeb > 1)
+			do_swap(&all->stackb);
+	}
+	else
+		extend_execute(all, command);
 }

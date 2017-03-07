@@ -101,10 +101,10 @@ int		main(int ac, char **av)
 	all.sizeb = 0;
 	check_duplicates(&all);
 	get_commands(&all);
-	execute_commands(&all);
+//	execute_commands(&all);
 	check_sort(&all);
 	free_list(all.stacka);
-	if (all.commands)
-		free(all.commands);
+	// if (all.commands)
+	// 	free(all.commands);
 	return (0);
 }

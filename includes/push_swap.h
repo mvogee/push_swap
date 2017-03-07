@@ -62,7 +62,7 @@ typedef struct		s_all
 	int				size;
 	int				sizea;
 	int				sizeb;
-	int				*commands;
+	// int				*commands;
 	int				numcommands;
 	int				b_curhigh;
 	int				b_curlow;
@@ -92,17 +92,17 @@ void				get_list_stack(int ac, char **av, t_all *all);
 */
 
 int					translate_command(char *command);
-void				add_command(char *line, t_all *all);
+//void				add_command(char *line, t_all *all);
 void				get_commands(t_all *all);
 
 /*
 ** execute_commands.c
 */
 
-void				extend_execute3(t_all *all, int count);
-void				extend_execute2(t_all *all, int count);
-void				extend_execute(t_all *all, int count);
-void				execute_commands(t_all *all);
+void				extend_execute3(t_all *all, int command);
+void				extend_execute2(t_all *all, int command);
+void				extend_execute(t_all *all, int command);
+void				execute_commands(t_all *all, int command);
 
 /*
 ** command execution functions

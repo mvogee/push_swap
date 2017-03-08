@@ -80,7 +80,7 @@ void	check_duplicates(t_all *all)
 }
 
 /*
-** add these lines to bottom of main to easily see stack at the end
+** add these lines main to easily see stack at the end
 ** of run and how many commands ran
 ** 	print_stacks(&all);
 **	ft_printf("\e[32mcommands run: %d\n", all.numcommands);

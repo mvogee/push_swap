@@ -36,7 +36,6 @@ SHAREDSRC =	get_stack.c \
 			./commands/swap.c \
 			./error.c \
 
-
 OBJ1 = $(SRC1:.c=.o) $(SHAREDSRC:.c=.o)
 OBJ2 = $(SRC2:.c=.o) $(SHAREDSRC:.c=.o)
 
@@ -98,7 +97,7 @@ fclean_libft:
 fclean_ftprintf:
 	@make -C ft_printf fclean
 
-re: fclean $(CHECKER) $(PSWAP)
+re: fclean all
 
 re_pswap: fclean_pswap $(PSWAP)
 

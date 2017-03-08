@@ -36,7 +36,6 @@ SHAREDSRC =	get_stack.c \
 			./commands/swap.c \
 			./error.c \
 
-
 OBJ1 = $(SRC1:.c=.o) $(SHAREDSRC:.c=.o)
 OBJ2 = $(SRC2:.c=.o) $(SHAREDSRC:.c=.o)
 
@@ -53,13 +52,13 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-.PHONY: all clean fclean re checker pswap makelibft makeprintf clean_ftprintf \
+.PHONY: all clean fclean re pswap makelibft makeprintf clean_ftprintf \
 	clean_libft fclean_checker fclean_pswap fclean_libft fclean_ftprintf \
 	re_pswap re_checker
 
 all: makeprintf makelibft $(CHECKER) $(PSWAP)
 
-checker: makeprintf makelibft $(CHECKER)
+checkr: makeprintf makelibft $(CHECKER)
 
 pswap: makeprintf makelibft $(PSWAP)
 

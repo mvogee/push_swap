@@ -19,7 +19,7 @@ void	check_sort(t_all *all)
 	tmp = all->stacka;
 	if (all->sizeb != 0 || !tmp)
 	{
-		ft_printf("KO\n");
+		ft_printf("\e[31mKO\n");
 		return ;
 	}
 	while (tmp->next)

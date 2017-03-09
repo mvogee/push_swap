@@ -1,7 +1,7 @@
 # push_swap
 Stack sorting algorithm project<br><br>
 <b>Make compiles two programs. checker and push_swap.</b><br>
-- The checker program reads arguments from the standard input and takes the stack as argument.<br>
+- The checker program reads arguments from the standard output and takes the stack as argument.<br>
 It executes the given commands on the stack displaying OK if the stack is properly sorted and KO if not.<br><br>
 - The push_swap program takes the stack as an argument and will print the propper commands to efficiently sort the numbers<br>
 

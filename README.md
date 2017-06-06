@@ -34,3 +34,7 @@ becomes the first one.<br>
 <b>rrb</b>: reverse rotate b - shift down all elements of stack b by 1. The last element
 becomes the first one.<br>
 <b>rrr</b>: rra and rrb at the same time.<br>
+<br>
+The goal is to use as few opperations as possible to sort the stack.<br>
+To do this I search for the least costly number in stack A to move to stack B such that stack B will alwasy be sorted.<br>
+<br>Once stack A is empty we move all the numbers back from stack B into stack A finishing the process<br>

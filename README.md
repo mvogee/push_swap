@@ -1,5 +1,11 @@
 # push_swap
-Stack sorting algorithm project<br><br>
+Stack sorting algorithm<br>
+<br>
+The goal is to use as few opperations as possible to sort the stack.<br>
+The idea is to search for the least costly number in stack A to move to stack B such that stack B will alwasy be sorted.<br>
+Once stack A is empty we move all the numbers back from stack B into stack A finishing the process<br>
+If there are less than 15 elements in the stack a hybrid more efficient algorithm for small sizes is used<br>
+<br>
 <b>Make compiles two programs. checker and push_swap.</b><br>
 - The checker program reads arguments from the standard output and takes the stack as argument.<br>
 It executes the given commands on the stack displaying OK if the stack is properly sorted and KO if not.<br><br>
@@ -34,7 +40,3 @@ becomes the first one.<br>
 <b>rrb</b>: reverse rotate b - shift down all elements of stack b by 1. The last element
 becomes the first one.<br>
 <b>rrr</b>: rra and rrb at the same time.<br>
-<br>
-The goal is to use as few opperations as possible to sort the stack.<br>
-To do this I search for the least costly number in stack A to move to stack B such that stack B will alwasy be sorted.<br>
-<br>Once stack A is empty we move all the numbers back from stack B into stack A finishing the process<br>
